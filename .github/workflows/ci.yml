@@ -1,0 +1,29 @@
+name: CI
+
+on:
+    push:
+        branches:
+            [main]
+    pull_request:
+        branches:
+            [main]
+             
+jobs: 
+    build:
+        runs-on:
+            ubuntu-latest
+        
+        steps:
+            - name: Descargar el codigo del Repositorio
+              uses: actions/checkout@v4
+
+            - name: Construir la imagen Docker
+              run: docker build -t devops-portfolio ./src
+
+            - name: Verificar que el contenedor levanta correctamente
+              run: |
+                docker run -d -p 8080:80 --name test-container devops-portfolio
+                sleep 3
+                curl -f http://localhost:8080 || exit 1
+                docker stop test-container 
+                                
