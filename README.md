@@ -1,4 +1,5 @@
 # DevOps & Infrastructure Portfolio
+![CI](https://github.com/Kchmo-2018/devops-portafolio/actions/workflows/ci.yml/badge.svg)
 
 Portafolio Personal enfocado en prácticas de DevOps: control de versiones, CI/DC, contenerización e infraestructura como codigo. Este repositorio documenta tanto el resultado como el proceso de aprendizaje detras de cada desicion técnica
 
@@ -16,7 +17,7 @@ Nota: Sujeto a proximos cambios
 ```text
 devops-portfolio/
 ├── .github/
-│   └── workflows/        # Workflows de CI/CD (GitHub Actions) — próximamente
+│   └── workflows/        # Workflows de CI/CD (GitHub Actions) 
 ├── docs/                 # Registros de decisiones de arquitectura (ADRs)
 │   └── decisiones.md
 ├── infrastructure/       # Manifiestos de Terraform — próximamente
@@ -37,8 +38,8 @@ devops-portfolio/
 ## Roadmap
 
 * [x] Estructura inicial del repositorio y convenciones de commits
-* [ ] Contenerización con Docker + Nginx
-* [ ] Pipeline de CI/CD con GitHub Actions
+* [x] Contenerización con Docker + Nginx
+* [x] Pipeline de CI/CD con GitHub Actions
 * [ ] Despliegue automatizado a la nube (AWS S3/CloudFront)
 * [ ] Infraestructura como código con Terraform
 * [ ] Proyectos adicionales de práctica (Kubernetes, monitoreo con Prometheus/Grafana)
