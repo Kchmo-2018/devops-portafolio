@@ -1,6 +1,9 @@
 # DevOps & Infrastructure Portfolio
 
 [![CI](https://github.com/Kchmo-2018/devops-portafolio/actions/workflows/ci.yml/badge.svg)](https://github.com/Kchmo-2018/devops-portafolio/actions/workflows/ci.yml)
+[![Deploy](https://github.com/Kchmo-2018/devops-portafolio/actions/workflows/deploy.yml/badge.svg)](https://github.com/Kchmo-2018/devops-portafolio/actions/workflows/deploy.yml)
+
+**Sitio en vivo:** <https://kchmo-2018.github.io/devops-portafolio/>
 
 Portafolio personal enfocado en prácticas de DevOps: control de versiones, CI/CD, contenerización e infraestructura como código. Este repositorio documenta tanto el resultado como el proceso de aprendizaje detrás de cada decisión técnica.
 
@@ -12,7 +15,8 @@ Lo que ya está implementado y funcionando en este repositorio:
 
 * **HTML5**: sitio estático.
 * **Docker + Nginx (Alpine)**: imagen que empaqueta y sirve el sitio.
-* **GitHub Actions**: pipeline de CI que construye la imagen y comprueba que el contenedor responde.
+* **GitHub Actions**: pipeline de CI que construye la imagen y comprueba que el contenedor responde, y pipeline de CD que despliega el sitio.
+* **GitHub Pages**: hosting del sitio estático, publicado automáticamente desde `main`.
 * **Make**: comandos estandarizados para construir y ejecutar el proyecto.
 * **Git / GitHub**: control de versiones con flujo basado en ramas y Pull Requests.
 * **Conventional Commits**: historial de cambios legible y consistente.
@@ -23,7 +27,8 @@ Lo que ya está implementado y funcionando en este repositorio:
 devops-portafolio/
 ├── .github/
 │   └── workflows/
-│       └── ci.yml        # Pipeline de CI (GitHub Actions)
+│       ├── ci.yml        # CI: construye la imagen y prueba el contenedor
+│       └── deploy.yml    # CD: despliega el sitio a GitHub Pages
 ├── docs/                 # Registros de decisiones técnicas
 │   └── decisions.md
 ├── src/                  # Código fuente del sitio y su imagen Docker
@@ -68,12 +73,26 @@ En cada `push` a `main` y en cada Pull Request hacia `main`, GitHub Actions:
 
 Si cualquiera de esos pasos falla, el workflow se marca en rojo y el cambio no debería fusionarse.
 
+## Cómo funciona el despliegue continuo (CD)
+
+Cada vez que un cambio se fusiona a `main`, el workflow `deploy.yml`:
+
+1. Copia `src/` a una carpeta `_site/` **sin** los archivos de infraestructura (`Dockerfile`, `nginx.conf`, `.dockerignore`), para no publicarlos junto al sitio.
+2. Empaqueta esa carpeta como artefacto.
+3. La publica en GitHub Pages.
+
+Decisiones de diseño:
+
+* **Permisos mínimos**: el workflow solo puede leer el código y publicar en Pages.
+* **Concurrencia controlada**: dos despliegues seguidos se encolan en lugar de pisarse.
+* **Docker no interviene en producción**: Pages sirve los archivos estáticos directamente. Docker y Nginx se usan en el CI para validar la imagen y quedan listos para la etapa de Kubernetes.
+
 ## Roadmap
 
 * [x] Estructura inicial del repositorio y convenciones de commits
 * [x] Contenerización con Docker + Nginx
 * [x] Integración continua (CI) con GitHub Actions
-* [ ] Despliegue continuo (CD) a GitHub Pages
+* [x] Despliegue continuo (CD) a GitHub Pages
 * [ ] Diseño del sitio con Tailwind CSS
 * [ ] Despliegue en la nube (AWS S3 + CloudFront o Azure Static Web Apps)
 * [ ] Infraestructura como código con Terraform
