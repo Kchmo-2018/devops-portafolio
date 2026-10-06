@@ -13,3 +13,7 @@ Un ADR es un documento corto que registra **una decisión técnica y su razonami
 | ADR | Título | Estado |
 |---|---|---|
 | [0001](0001-flujo-de-ramas-y-commits.md) | Flujo de ramas, Pull Requests y Conventional Commits | Aceptada |
+| [0002](0002-docker-nginx-para-el-sitio.md) | Docker y Nginx para ejecutar y validar el sitio | Aceptada |
+| [0003](0003-dockerfile-en-src.md) | Dockerfile y configuración de Nginx dentro de `src/` | Aceptada |
+| [0004](0004-ci-con-prueba-del-contenedor.md) | CI que construye la imagen y prueba el contenedor | Aceptada |
+| [0005](0005-despliegue-en-github-pages.md) | Despliegue del sitio en GitHub Pages mediante GitHub Actions | Aceptada |
