@@ -29,8 +29,8 @@ devops-portafolio/
 │   └── workflows/
 │       ├── ci.yml        # CI: construye la imagen y prueba el contenedor
 │       └── deploy.yml    # CD: despliega el sitio a GitHub Pages
-├── docs/                 # Registros de decisiones técnicas
-│   └── decisions.md
+├── docs/
+│   └── adr/              # Registros de decisiones de arquitectura (ADR)
 ├── src/                  # Código fuente del sitio y su imagen Docker
 │   ├── .dockerignore
 │   ├── Dockerfile
