@@ -12,4 +12,4 @@ Un ADR es un documento corto que registra **una decisión técnica y su razonami
 
 | ADR | Título | Estado |
 |---|---|---|
-| — | Aún no hay ADRs registrados | — |
+| [0001](0001-flujo-de-ramas-y-commits.md) | Flujo de ramas, Pull Requests y Conventional Commits | Aceptada |
