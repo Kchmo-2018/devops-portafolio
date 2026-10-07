@@ -17,4 +17,4 @@ Un ADR es un documento corto que registra **una decisión técnica y su razonami
 | [0003](0003-dockerfile-en-src.md) | Dockerfile y configuración de Nginx dentro de `src/` | Aceptada |
 | [0004](0004-ci-con-prueba-del-contenedor.md) | CI que construye la imagen y prueba el contenedor | Aceptada |
 | [0005](0005-despliegue-en-github-pages.md) | Despliegue del sitio en GitHub Pages mediante GitHub Actions | Aceptada |
-| [0006](0006-nextjs-estatico-con-tailwind.md) | Next.js exportado como sitio estático, con Tailwind CSS | Propuesta |
+| [0006](0006-nextjs-estatico-con-tailwind.md) | Next.js exportado como sitio estático, con Tailwind CSS | Aceptada |
