@@ -1,6 +1,6 @@
 # ADR-0006: Next.js exportado como sitio estático, con Tailwind CSS
 
-- **Estado:** Propuesta
+- **Estado:** Aceptada
 - **Fecha:** 2026-10-07
 
 ## Contexto
