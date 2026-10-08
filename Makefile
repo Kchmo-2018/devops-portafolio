@@ -2,7 +2,7 @@ build:
 	docker build -t devops-portfolio .
 
 run:
-	docker build -t devops-portfolio .
+	docker run -d -p 8080:80 --name devops-portfolio devops-portfolio
 
 stop:
 	docker stop devops-portfolio && docker rm devops-portfolio
