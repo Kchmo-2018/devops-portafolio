@@ -36,9 +36,9 @@ jobs:
               run: npm run build
 
             - name: Construir la imagen Docker
-              run: docker build -t devops-portfolio ./src
+              run: docker build -t devops-portfolio .
 
-            - name: Verificar que el contenedor levanta correctamente
+            - name: Verificar que el contenedor levanta ccorrectamente
               run: |
                 docker run -d -p 8080:80 --name test-container devops-portfolio
                 sleep 3
