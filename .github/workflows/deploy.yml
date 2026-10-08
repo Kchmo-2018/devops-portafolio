@@ -1,22 +1,16 @@
 name: Deploy to GitHub Pages
 
-# Cuándo corre: cada vez que algo se fusiona a main (CD),
-# y también a mano desde la pestaña Actions (workflow_dispatch).
 on:
   push:
     branches: [main]
   workflow_dispatch:
 
-# Principio de menor privilegio: el workflow solo recibe los permisos
-# que necesita, no el acceso completo por defecto.
 permissions:
   contents: read     # leer el código del repo
   pages: write       # publicar en GitHub Pages
   id-token: write    # verificar que el despliegue viene de este workflow
 
-# Si se disparan dos despliegues seguidos, el segundo espera al primero
-# en vez de pisarlo. No se cancela el que está en curso para no dejar
-# el sitio publicado a medias.
+
 concurrency:
   group: pages
   cancel-in-progress: false
@@ -32,16 +26,19 @@ jobs:
       - name: Descargar el código del repositorio
         uses: actions/checkout@v4
 
-      # src/ contiene archivos de infraestructura (Docker y Nginx) que no
-      # forman parte del sitio. Se copian a _site/ solo los archivos
-      # publicables, para no exponerlos como descargas públicas.
-      - name: Preparar carpeta publicable
-        run: |
-          mkdir _site
-          cp -r src/. _site/
-          rm -f _site/Dockerfile _site/nginx.conf _site/.dockerignore
-          echo "Archivos que se publicarán:"
-          find _site -type f
+      - name: Instalar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Compilar el sitio
+        run: npm run build
+        env:
+          NEXT_PUBLIC_BASE_PATH: /devops-portafolio
 
       - name: Configurar GitHub Pages
         uses: actions/configure-pages@v5
@@ -49,7 +46,7 @@ jobs:
       - name: Empaquetar el sitio como artefacto
         uses: actions/upload-pages-artifact@v3
         with:
-          path: _site
+          path: out
 
       - name: Desplegar a GitHub Pages
         id: deployment
