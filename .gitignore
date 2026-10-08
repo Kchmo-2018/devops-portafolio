@@ -1,6 +1,4 @@
-##Prueba
 node_modules/
-src/assets/style.css
 .next/
 out/
 next-env.d.ts
