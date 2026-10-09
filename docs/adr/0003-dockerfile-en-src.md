@@ -1,6 +1,6 @@
 # ADR-0003: Dockerfile y configuración de Nginx dentro de `src/`
 
-- **Estado:** Aceptada
+- **Estado:** Reemplazada por ADR-0007
 - **Fecha:** 2026-10-06
 
 ## Contexto
