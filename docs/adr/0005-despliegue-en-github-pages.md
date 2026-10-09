@@ -1,6 +1,6 @@
 # ADR-0005: Despliegue del sitio en GitHub Pages mediante GitHub Actions
 
-- **Estado:** Aceptada
+- **Estado:** Aceptada (parcialmente reemplazada por ADR-0007: el despliegue ya no copia `src/` ni elimina archivos de infraestructura, sino que publica `out/`)
 - **Fecha:** 2026-10-06
 
 ## Contexto
