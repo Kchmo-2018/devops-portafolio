@@ -1,5 +1,5 @@
 build:
-	docker build -t devops-portfolio ./src
+	docker build -t devops-portfolio .
 
 run:
 	docker run -d -p 8080:80 --name devops-portfolio devops-portfolio
