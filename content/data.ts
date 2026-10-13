@@ -58,6 +58,12 @@ export const NAV: NavItem[] = [
 /** uso = lo aplico en trabajo o proyectos; practica = lo practico ahora; aprendiendo = en el roadmap. */
 export type Level = "uso" | "practica" | "aprendiendo";
 
+export const LEVELS: { id: Level; label: string; hint: string }[] = [
+  { id: "uso", label: "Lo uso", hint: "Lo aplico en mi trabajo o en proyectos." },
+  { id: "practica", label: "Lo practico", hint: "Lo estoy practicando en este portafolio." },
+  { id: "aprendiendo", label: "Aprendiendo", hint: "Está en mi roadmap." },
+];
+
 export type Skill = { id: string; name: string; symbol: string; level: Level };
 export type SkillGroup = { family: string; skills: Skill[] };
 
@@ -107,7 +113,7 @@ export const SKILL_GROUPS: SkillGroup[] = [
     family: "Prácticas",
     skills: [
       { id: "scrum", name: "Scrum", symbol: "Sc", level: "uso" },
-      { id: "testing", name: "Pruebas automatizadas", symbol: "Ts", level: "uso" },
+      { id: "testing", name: "Pruebas automatizadas", symbol: "Pt", level: "uso" },
       { id: "adr", name: "ADR y documentación", symbol: "Ad", level: "uso" },
     ],
   },
