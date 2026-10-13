@@ -22,11 +22,20 @@ body {
   font-family: var(--font-sans);
 }
 
-/* Titulares: Inter Tight bold con tracking apretado y interlineado 1. */
+/* Titulares: Instrument Serif regular, tracking apretado, interlineado 1.
+   La palabra de acento va en <em> (cursiva de la misma familia). */
 @utility headline {
-  font-family: var(--font-sans);
-  font-weight: 700;
-  letter-spacing: -0.04em;
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: -0.03em;
   line-height: 1;
   text-wrap: balance;
+}
+
+/* Etiquetas: JetBrains Mono en mayúsculas con espaciado. */
+@utility label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }

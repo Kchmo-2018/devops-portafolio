@@ -4,43 +4,50 @@ import { useState } from "react";
 import { LEVELS, PROJECTS, SKILL_GROUPS, type Level } from "../content/data";
 import { SKILL_ICONS } from "../content/icons";
 
-const TODOS = "todos";
+type Filter = "todos" | Level;
+
+const CHIPS: { id: Filter; label: string }[] = [
+  { id: "todos", label: "Todo" },
+  { id: "uso", label: "En uso" },
+  { id: "practica", label: "Practicando" },
+  { id: "aprendiendo", label: "Aprendiendo" },
+];
 
 const ALL_SKILLS = SKILL_GROUPS.flatMap((group) =>
   group.skills.map((skill) => ({ ...skill, family: group.family })),
 );
 
-const DOT: Record<Level, string> = {
-  uso: "bg-ink",
-  practica: "bg-mute",
-  aprendiendo: "border border-ink/40",
-};
-
 const FOCUS =
   "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink";
 
-const TAB_BASE = "rounded-full border px-4 py-2 text-sm transition " + FOCUS;
-const TAB_ON = "border-ink bg-ink text-paper";
-const TAB_OFF = "border-ink/20 hover:border-ink";
+const CHIP_BASE =
+  "label min-h-11 rounded-full border border-ink px-5 transition " + FOCUS;
+const CHIP_ON = "bg-ink text-paper";
+const CHIP_OFF = "bg-transparent text-ink hover:bg-soft";
 
+/* Una casilla por nivel: negra = lo uso, blanca = lo practico, punteada = aprendiendo. */
 const TILE_BASE =
-  "flex aspect-square w-full flex-col justify-between rounded-lg border " +
-  "p-3 text-left transition " +
+  "flex aspect-[1/1.05] w-full flex-col justify-between rounded-2xl border " +
+  "px-4 py-3.5 text-left transition duration-300 hover:-translate-y-1 " +
+  "disabled:pointer-events-none disabled:opacity-20 " +
   FOCUS;
-const TILE_ON = "border-ink bg-ink text-paper";
-const TILE_OFF = "border-ink/10 bg-card hover:border-ink/40";
+const TILE_BY_LEVEL: Record<Level, string> = {
+  uso: "border-ink bg-ink text-paper",
+  practica: "border-ink bg-card text-ink",
+  aprendiendo: "border-dashed border-[#a9a6a0] bg-transparent text-mute",
+};
+const TILE_ACTIVE = "outline-2 outline-offset-4 outline-ink";
 
-const ASIDE_CLASS =
-  "order-first rounded-xl border border-ink/10 bg-card p-6 " +
-  "md:order-last md:sticky md:top-8 md:self-start";
+const PANEL_CLASS =
+  "order-first grid gap-8 rounded-2xl border border-ink/10 bg-card p-6 " +
+  "md:order-last md:grid-cols-[auto_1fr_1fr] md:items-center md:gap-12 md:p-8";
 
 export default function Skills() {
-  const [filter, setFilter] = useState<string>(TODOS);
+  const [filter, setFilter] = useState<Filter>("todos");
   const [activeId, setActiveId] = useState<string | null>(null);
 
-  const visible =
-    filter === TODOS ? ALL_SKILLS : ALL_SKILLS.filter((s) => s.family === filter);
-  const active = visible.find((s) => s.id === activeId) ?? visible[0];
+  const matches = ALL_SKILLS.filter((s) => filter === "todos" || s.level === filter);
+  const active = matches.find((s) => s.id === activeId) ?? matches[0];
   const level = LEVELS.find((l) => l.id === active.level);
   const icon = SKILL_ICONS[active.id];
   const projects = PROJECTS.filter((p) => p.tech.includes(active.id));
@@ -48,95 +55,90 @@ export default function Skills() {
     String(ALL_SKILLS.findIndex((s) => s.id === id) + 1).padStart(2, "0");
 
   return (
-    <section id="skills" className="mx-auto max-w-5xl px-6 py-24">
-      <p className="font-mono text-xs uppercase tracking-widest text-mute">Stack</p>
-      <h2 className="mt-3 headline text-4xl sm:text-5xl">
-        Tecnologías con las que trabajo
+    <section id="skills" className="mx-auto max-w-[1320px] px-6 py-24 sm:px-12">
+      <p className="label text-mute">02 · Stack</p>
+      <h2 className="headline mt-4 text-5xl sm:text-7xl lg:text-[5.5rem]">
+        La tabla periódica <em>DevOps.</em>
       </h2>
-      <p className="mt-4 max-w-xl text-ink-2">
-        Pasa el cursor, enfoca con el teclado o toca una casilla para ver dónde la he
-        usado.
-      </p>
 
-      <div role="group" aria-label="Filtrar por familia" className="mt-8 flex flex-wrap gap-2">
-        {[TODOS, ...SKILL_GROUPS.map((g) => g.family)].map((family) => (
+      <div
+        role="group"
+        aria-label="Filtrar por nivel"
+        className="mt-9 flex flex-wrap items-center gap-2.5"
+      >
+        {CHIPS.map((chip) => (
           <button
-            key={family}
+            key={chip.id}
             type="button"
-            aria-pressed={filter === family}
-            onClick={() => setFilter(family)}
-            className={`${TAB_BASE} ${filter === family ? TAB_ON : TAB_OFF}`}
+            aria-pressed={filter === chip.id}
+            onClick={() => setFilter(chip.id)}
+            className={`${CHIP_BASE} ${filter === chip.id ? CHIP_ON : CHIP_OFF}`}
           >
-            {family === TODOS ? "Todas" : family}
+            {chip.label}
           </button>
         ))}
       </div>
 
-      <div className="mt-10 grid gap-8 md:grid-cols-[1fr_18rem]">
-        <ul className="grid grid-cols-3 content-start gap-2 sm:grid-cols-4 lg:grid-cols-5">
-          {visible.map((skill) => {
-            const isActive = skill.id === active.id;
-            return (
-              <li key={skill.id}>
-                <button
-                  type="button"
-                  aria-current={isActive}
-                  onMouseEnter={() => setActiveId(skill.id)}
-                  onFocus={() => setActiveId(skill.id)}
-                  onClick={() => setActiveId(skill.id)}
-                  className={`${TILE_BASE} ${isActive ? TILE_ON : TILE_OFF}`}
-                >
-                  <span className="flex items-center justify-between">
-                    <span className="font-mono text-[10px] opacity-60">
-                      {numberOf(skill.id)}
-                    </span>
-                    <span
-                      aria-hidden="true"
-                      className={`size-2 rounded-full ${isActive ? "bg-paper" : DOT[skill.level]}`}
-                    />
+      <div className="mt-7 flex flex-col gap-8">
+      <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7">
+        {ALL_SKILLS.map((skill) => {
+          const isMatch = filter === "todos" || skill.level === filter;
+          const isActive = isMatch && skill.id === active.id;
+          return (
+            <li key={skill.id}>
+              <button
+                type="button"
+                disabled={!isMatch}
+                aria-current={isActive}
+                onMouseEnter={() => setActiveId(skill.id)}
+                onFocus={() => setActiveId(skill.id)}
+                onClick={() => setActiveId(skill.id)}
+                className={`${TILE_BASE} ${TILE_BY_LEVEL[skill.level]} ${isActive ? TILE_ACTIVE : ""}`}
+              >
+                <span className="label text-[11px] leading-snug opacity-80">
+                  {numberOf(skill.id)} · {skill.family}
+                </span>
+                <span>
+                  <span className="block font-serif text-5xl leading-none">
+                    {skill.symbol}
                   </span>
-                  <span>
-                    <span className="block headline text-4xl">
-                      {skill.symbol}
-                    </span>
-                    <span className="mt-1 block text-xs leading-tight opacity-80">
-                      {skill.name}
-                    </span>
-                  </span>
-                </button>
-              </li>
-            );
-          })}
-        </ul>
+                  <span className="mt-1 block text-[15px] leading-tight">{skill.name}</span>
+                </span>
+              </button>
+            </li>
+          );
+        })}
+      </ul>
 
-        <aside aria-live="polite" className={ASIDE_CLASS}>
-          <p className="font-mono text-xs text-mute">
+      <aside aria-live="polite" className={PANEL_CLASS}>
+        <div className="flex items-end gap-5">
+          <p className="font-serif text-8xl leading-none">{active.symbol}</p>
+          {icon && (
+            <svg
+              viewBox="0 0 24 24"
+              role="img"
+              aria-label={icon.title}
+              className="size-16 shrink-0 fill-current text-ink"
+            >
+              <path d={icon.path} />
+            </svg>
+          )}
+        </div>
+
+        <div>
+          <p className="label text-mute">
             {numberOf(active.id)} · {active.family}
           </p>
-          <div className="mt-3 flex items-end justify-between gap-4">
-            <p className="headline text-7xl">{active.symbol}</p>
-            {icon && (
-              <svg
-                viewBox="0 0 24 24"
-                role="img"
-                aria-label={icon.title}
-                className="size-16 shrink-0 fill-current text-ink"
-              >
-                <path d={icon.path} />
-              </svg>
-            )}
-          </div>
-          <h3 className="mt-3 text-xl font-medium">{active.name}</h3>
-          <p className="mt-2 flex items-center gap-2 text-sm text-ink-2">
-            <span aria-hidden="true" className={`size-2 rounded-full ${DOT[active.level]}`} />
-            {level?.label}: {level?.hint}
+          <h3 className="headline mt-2 text-4xl">{active.name}</h3>
+          <p className="mt-3 text-ink-2">
+            <strong className="font-medium text-ink">{level?.label}.</strong> {level?.hint}
           </p>
+        </div>
 
-          <p className="mt-6 font-mono text-xs uppercase tracking-widest text-mute">
-            Dónde la uso
-          </p>
+        <div>
+          <p className="label text-mute">Dónde la uso</p>
           {projects.length > 0 ? (
-            <ul className="mt-2 flex flex-col gap-1 text-sm">
+            <ul className="mt-2 flex flex-col gap-1">
               {projects.map((project) => (
                 <li key={project.id}>
                   {project.title}
@@ -145,11 +147,10 @@ export default function Skills() {
               ))}
             </ul>
           ) : (
-            <p className="mt-2 text-sm text-mute">
-              Aún sin proyecto asociado en este portafolio.
-            </p>
+            <p className="mt-2 text-mute">Aún sin proyecto asociado en este portafolio.</p>
           )}
-        </aside>
+        </div>
+      </aside>
       </div>
 
       <p className="mt-10 text-xs text-mute">
