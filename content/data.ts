@@ -52,6 +52,12 @@ export const HERO = {
   primary: { label: "Explorar trabajo", href: "#skills" },
   /** Mientras no exista la sección Contacto, el botón abre el correo. */
   secondary: { label: "Hablemos", href: `mailto:${PROFILE.email}` },
+  /** Enlaces externos del hero (se abren en pestaña nueva). */
+  links: [
+    { label: "GitHub", href: PROFILE.github },
+    { label: "LinkedIn", href: PROFILE.linkedin },
+    { label: "Este repositorio", href: PROFILE.repo },
+  ],
   tags: ["CI/CD", "Contenedores", "IaC", "Documentación"],
   scrollHint: "Desliza ↓",
 } as const;

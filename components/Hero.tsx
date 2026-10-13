@@ -10,6 +10,11 @@ const BTN =
 const BTN_PRIMARY = "bg-ink text-paper hover:bg-ink-2";
 const BTN_GHOST = "hover:bg-soft";
 
+const LINK_PILL =
+  "inline-flex items-center gap-1.5 rounded-full border border-ink/25 px-4 py-2 " +
+  "text-sm transition hover:border-ink hover:bg-soft " +
+  FOCUS;
+
 const GHOST_SIZE = "text-[clamp(3.5rem,18vw,14.4rem)]";
 const ACCENT_SIZE = "text-[clamp(3rem,15.6vw,12.5rem)]";
 
@@ -52,6 +57,22 @@ export default function Hero() {
             </a>
           </div>
         </div>
+
+        <ul className="mt-8 flex flex-wrap gap-2.5">
+          {HERO.links.map((link) => (
+            <li key={link.label}>
+              <a
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={LINK_PILL}
+              >
+                {link.label}
+                <span aria-hidden="true">↗</span>
+              </a>
+            </li>
+          ))}
+        </ul>
       </div>
 
       <div className="relative mx-auto flex w-full max-w-[1320px] flex-wrap items-center justify-between gap-4 px-6 pb-7 sm:px-12">
