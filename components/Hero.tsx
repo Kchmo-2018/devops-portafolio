@@ -1,65 +1,69 @@
-import { PROFILE } from "../content/data";
+import { HERO, PROFILE } from "../content/data";
 
-const LINKS = [
-    { label: "GitHub", href: PROFILE.github },
-    { label: "LinkedIn", href: PROFILE.linkedin},
-    { label: "Este repositorio", href: PROFILE.repo},
-    
-]
+const FOCUS =
+  "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink";
 
-export default function hero() { 
-    return (
-        <section
-            id="top"
-            className="mx-auto flex min-h-screen max-w-5xl flex-col justify-center gap-8 px-6 py-24"
-        >
-      <p className="font-mono text-xs uppercase tracking-widest text-mute">
-        {PROFILE.location}
-        {PROFILE.remote ? " · Remoto" : ""}
-      </p>
+const BTN =
+  "inline-flex min-h-[52px] items-center rounded-full border border-ink px-7 " +
+  "text-[15px] transition " +
+  FOCUS;
+const BTN_PRIMARY = "bg-ink text-paper hover:bg-ink-2";
+const BTN_GHOST = "hover:bg-soft";
 
-      <h1 className="headline text-6xl sm:text-[5.5rem]">{PROFILE.name}</h1>
+const GHOST_SIZE = "text-[clamp(3.5rem,18vw,14.4rem)]";
+const ACCENT_SIZE = "text-[clamp(3rem,15.6vw,12.5rem)]";
 
-      <p className="font-serif text-3xl italic text-ink-2 sm:text-4xl">{PROFILE.tagline}</p>
+export default function Hero() {
+  return (
+    <section
+      id="top"
+      className="relative flex min-h-[calc(100svh-5rem)] flex-col overflow-hidden"
+    >
+      <div aria-hidden="true" className="hero-glow pointer-events-none absolute inset-0" />
 
-      <p className="max-w-xl text-lg text-ink-2">{PROFILE.summary}</p>
+      <div className="relative mx-auto flex w-full max-w-[1320px] flex-1 flex-col justify-center px-6 py-10 sm:px-12">
+        <p className="label flex items-center gap-2.5 text-mute">
+          <span aria-hidden="true" className="size-2 rounded-full bg-ink" />
+          {HERO.status} · {PROFILE.location}
+          {PROFILE.remote ? " · Remoto" : ""}
+        </p>
 
-      <div className="flex flex-wrap items-center gap-3">
-        <a
-          href={`mailto:${PROFILE.email}`}
-          className="rounded-full bg-ink px-5 py-3 text-sm font-medium text-paper transition hover:bg-ink-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
-        >
-          Escríbeme
-        </a>
-        {LINKS.map((link) => (
-          <a
-            key={link.label}
-            href={link.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-full border border-ink/20 px-5 py-3 text-sm font-medium transition hover:border-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+        <h1 className="mt-5 leading-[0.86]">
+          <span
+            className={`ghost block font-medium uppercase tracking-[-0.04em] ${GHOST_SIZE}`}
           >
-            {link.label}
-          </a>
-        ))}
+            {HERO.ghost}
+          </span>
+          <span
+            className={`-mt-2 block font-serif italic tracking-[-0.03em] ${ACCENT_SIZE}`}
+          >
+            {HERO.accent}
+          </span>
+        </h1>
+
+        <div className="mt-10 flex flex-wrap items-end justify-between gap-x-12 gap-y-8">
+          <p className="max-w-[35rem] text-xl text-ink-2">{HERO.lead}</p>
+          <div className="flex flex-wrap gap-3">
+            <a href={HERO.primary.href} className={`${BTN} ${BTN_PRIMARY}`}>
+              {HERO.primary.label}
+            </a>
+            <a href={HERO.secondary.href} className={`${BTN} ${BTN_GHOST}`}>
+              {HERO.secondary.label}
+            </a>
+          </div>
+        </div>
       </div>
 
-      <ul className="flex flex-wrap gap-x-6 gap-y-2 font-mono text-xs uppercase tracking-widest text-mute">
-        {PROFILE.roles.map((role) => (
-          <li key={role}>{role}</li>
-        ))}
-      </ul>
-
-
-
-
-
-
-
-
-
-        </section>
-    
-
-)
+      <div className="relative mx-auto flex w-full max-w-[1320px] flex-wrap items-center justify-between gap-4 px-6 pb-7 sm:px-12">
+        <ul className="flex flex-wrap gap-2">
+          {HERO.tags.map((tag) => (
+            <li key={tag} className="label rounded-full border border-ink/25 px-3.5 py-1.5">
+              {tag}
+            </li>
+          ))}
+        </ul>
+        <span className="label text-mute">{HERO.scrollHint}</span>
+      </div>
+    </section>
+  );
 }

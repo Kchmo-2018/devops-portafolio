@@ -39,3 +39,15 @@ body {
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
+
+/* Texto en contorno (el "DEVOPS" del hero). */
+@utility ghost {
+  color: transparent;
+  -webkit-text-stroke: 2px var(--color-ink);
+}
+
+/* Resplandor suave detrás del hero. */
+@utility hero-glow {
+  background: radial-gradient(60% 50% at 70% 45%, #e1ddd4 0%, rgba(244, 242, 238, 0) 70%);
+  mix-blend-mode: multiply;
+}

@@ -40,6 +40,22 @@ export const PROFILE = {
   card: { id: "KM-2025", dept: "Backend · DevOps", validTill: "[N] años" },
 } as const;
 
+/* ───────────────────────── Hero ───────────────────────── */
+
+/** Textos del hero (prototipo). `ghost` va en contorno y `accent` en cursiva serif. */
+export const HERO = {
+  status: "Disponible",
+  ghost: "DevOps",
+  accent: "Engineer.",
+  lead: "Convierto cambios de código en despliegues confiables: ramas, CI/CD, contenedores e infraestructura, con cada decisión documentada.",
+  /** Mientras no exista la sección Trabajo, el botón apunta al Stack. */
+  primary: { label: "Explorar trabajo", href: "#skills" },
+  /** Mientras no exista la sección Contacto, el botón abre el correo. */
+  secondary: { label: "Hablemos", href: `mailto:${PROFILE.email}` },
+  tags: ["CI/CD", "Contenedores", "IaC", "Documentación"],
+  scrollHint: "Desliza ↓",
+} as const;
+
 /* ───────────────────────── Navegación ───────────────────────── */
 
 export type NavItem = { id: string; label: string };
