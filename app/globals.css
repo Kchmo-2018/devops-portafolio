@@ -21,3 +21,12 @@ body {
   color: var(--color-ink);
   font-family: var(--font-sans);
 }
+
+/* Titulares: Inter Tight bold con tracking apretado y interlineado 1. */
+@utility headline {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  text-wrap: balance;
+}

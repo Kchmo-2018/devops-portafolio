@@ -18,7 +18,7 @@ export default function hero() {
         {PROFILE.remote ? " · Remoto" : ""}
       </p>
 
-      <h1 className="font-serif text-6xl leading-none sm:text-8xl">{PROFILE.name}</h1>
+      <h1 className="headline text-6xl sm:text-[5.5rem]">{PROFILE.name}</h1>
 
       <p className="font-serif text-3xl italic text-ink-2 sm:text-4xl">{PROFILE.tagline}</p>
 

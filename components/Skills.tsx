@@ -50,7 +50,7 @@ export default function Skills() {
   return (
     <section id="skills" className="mx-auto max-w-5xl px-6 py-24">
       <p className="font-mono text-xs uppercase tracking-widest text-mute">Stack</p>
-      <h2 className="mt-3 font-serif text-4xl sm:text-5xl">
+      <h2 className="mt-3 headline text-4xl sm:text-5xl">
         Tecnologías con las que trabajo
       </h2>
       <p className="mt-4 max-w-xl text-ink-2">
@@ -96,7 +96,7 @@ export default function Skills() {
                     />
                   </span>
                   <span>
-                    <span className="block font-serif text-4xl leading-none">
+                    <span className="block headline text-4xl">
                       {skill.symbol}
                     </span>
                     <span className="mt-1 block text-xs leading-tight opacity-80">
@@ -114,7 +114,7 @@ export default function Skills() {
             {numberOf(active.id)} · {active.family}
           </p>
           <div className="mt-3 flex items-end justify-between gap-4">
-            <p className="font-serif text-7xl leading-none">{active.symbol}</p>
+            <p className="headline text-7xl">{active.symbol}</p>
             {icon && (
               <svg
                 viewBox="0 0 24 24"
