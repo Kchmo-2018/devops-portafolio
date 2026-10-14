@@ -61,6 +61,15 @@ export const HERO = {
   ],
 } as const;
 
+/* ───────────────────────── Sobre mí ───────────────────────── */
+
+export const ABOUT = {
+  label: "01 · Sobre mí",
+  title: "Construyo el camino del",
+  accent: "código a producción.",
+  quoteLabel: "Lema",
+} as const;
+
 /* ───────────────────────── Navegación ───────────────────────── */
 
 export type NavItem = { id: string; label: string };
