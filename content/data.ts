@@ -240,7 +240,7 @@ export const JOURNEY: JourneyItem[] = [
     id: "tesis",
     period: "2025",
     title: "Tesis de grado",
-    text: "Sistema informático para rehabilitación física con un sensor Kinect de Xbox. Captura los movimientos del paciente con precisión y los valida contra medidas establecidas por fisioterapeutas. Lo construí con PostgreSQL para los datos y MATLAB para el análisis del movimiento.",
+    text: "Sistema informático para rehabilitación física con un sensor Kinect de Xbox. Captura los movimientos del paciente con precisión, los muestra en modelos 3D y los valida contra medidas establecidas por fisioterapeutas. Lo construí con PostgreSQL para los datos y MATLAB para el análisis del movimiento.",
     tech: ["postgresql"],
   },
   {
@@ -377,13 +377,13 @@ export const PROJECTS: Project[] = [
   {
     id: "fisioterapia",
     index: "04",
-    title: "Fisioterapia en línea con modelos 3D e IA",
+    title: "Rehabilitación física con Kinect y modelos 3D",
     kicker: "Proyecto académico · URBE",
     status: "academico",
     description:
-      "Aplicación web con modelos 3D interactivos y recomendaciones basadas en IA; backend diseñado y optimizado.",
-    features: ["Modelos 3D interactivos", "Recomendaciones con IA", "Backend optimizado"],
-    tech: ["python", "javascript", "react"],
+      "Sistema de rehabilitación física que captura los movimientos del paciente con un Kinect de Xbox y los muestra en modelos 3D, validados con medidas de fisioterapeutas. Fue mi tesis de grado.",
+    features: ["Captura de movimiento con Kinect", "Modelos 3D interactivos", "Medidas validadas por fisioterapeutas", "Análisis con MATLAB"],
+    tech: ["postgresql"],
     github: null,
   },
   {
