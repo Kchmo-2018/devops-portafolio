@@ -174,16 +174,16 @@ export type Experience = {
 
 export const EXPERIENCE: Experience[] = [
   {
-    id: "alimentaria",
-    org: "Empresa del sector alimentario (confidencial)",
+    id: "actual",
+    org: "Empresa del sector industrial (confidencial)",
     title: "Desarrolladora Backend",
     start: "2025-12",
     end: null,
     period: "Dic 2025 – actualidad",
     bullets: [
-      "Digitalicé 13 formularios de inspección de inocuidad alimentaria en una plataforma de trazabilidad con Python, Django REST Framework, Celery y PostgreSQL.",
-      "Automaticé la gestión de no conformidades: cada ítem fallido genera un ticket mediante tareas asíncronas que se ejecutan al confirmar la transacción.",
-      "Diseñé un motor de detección de fallas recurrentes con niveles de severidad dinámicos y recomendaciones de mantenimiento para equipos de planta.",
+      "Digitalicé 13 formularios de inspección en una plataforma de trazabilidad con Python, Django REST Framework, Celery y PostgreSQL.",
+      "Automaticé la gestión de incidencias: cada ítem fallido genera un ticket mediante tareas asíncronas que se ejecutan al confirmar la transacción.",
+      "Diseñé un motor de detección de fallas recurrentes con niveles de severidad dinámicos y recomendaciones de mantenimiento.",
       "Extendí el sistema sin modificar los modelos en producción, con un único punto de integración, y documenté el diseño en un informe técnico aprobado.",
       "Evité hasta 100 consultas adicionales por petición precalculando alertas en segundo plano, con umbrales configurables y auditoría.",
     ],
@@ -248,11 +248,17 @@ export type Project = {
   /** Ids de SKILL_GROUPS. */
   tech: string[];
   github: string | null;
+  /** Título corto para la casilla cerrada del acordeón de Trabajo. */
+  short?: string;
+  /** Cuatro pasos del flujo ilustrativo (el último se resalta). */
+  flow?: [string, string, string, string];
 };
 
 export const PROJECTS: Project[] = [
   {
     id: "pipeline",
+    short: "Pipeline CI/CD",
+    flow: ["Rama", "CI", "Merge", "En vivo"],
     index: "01",
     title: "Pipeline CI/CD del portafolio",
     kicker: "Este sitio · 2026",
@@ -270,14 +276,16 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "trazabilidad",
+    short: "Plataforma de trazabilidad",
+    flow: ["Formulario", "Tarea asíncrona", "Alerta", "Ticket"],
     index: "02",
     title: "Plataforma de trazabilidad",
-    kicker: "Empresa del sector alimentario · en producción",
+    kicker: "Experiencia profesional",
     status: "produccion",
     description:
-      "Nuevas funcionalidades sobre una plataforma en producción: inspecciones digitales, tickets automáticos y alertas de fallas recurrentes.",
+      "Nuevas funcionalidades sobre una plataforma web en producción: formularios digitales, tickets automáticos y alertas de fallas recurrentes.",
     features: [
-      "13 formularios de inocuidad digitalizados",
+      "13 formularios digitalizados",
       "Tickets automáticos con tareas asíncronas",
       "Motor de fallas recurrentes con severidad dinámica",
       "Hasta 100 consultas menos por petición",
@@ -287,6 +295,8 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "entornos",
+    short: "Entornos y migración Java",
+    flow: ["Código", "Pruebas", "Imagen Docker", "Despliegue"],
     index: "03",
     title: "Entornos productivos y migración Java",
     kicker: "URBE · 2022–2023",
@@ -327,9 +337,11 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "nube-aws",
+    short: "Despliegue en AWS",
+    flow: ["Plan", "Apply", "Contenedor", "Servicio"],
     index: "06",
     title: "Despliegue en la nube con AWS",
-    kicker: "Planeado · todavía no iniciado",
+    kicker: "Todavía no iniciado",
     status: "planeado",
     description:
       "Llevar la misma imagen del sitio a un servicio de AWS con infraestructura como código, y documentarlo con su ADR.",
@@ -338,6 +350,25 @@ export const PROJECTS: Project[] = [
     github: null,
   },
 ];
+
+/* ───────────────────────── Trabajo ───────────────────────── */
+
+export const WORK = {
+  label: "03 · Trabajo",
+  title: "Lo que",
+  accent: "construí.",
+  /** Proyectos del acordeón, en orden. */
+  featured: ["pipeline", "trazabilidad", "entornos", "nube-aws"],
+  open: "Abrir",
+  flowTitle: "Flujo",
+  repo: "Ver repositorio",
+  statuses: {
+    produccion: "En producción",
+    publico: "Público",
+    academico: "Académico",
+    planeado: "Planeado",
+  } satisfies Record<ProjectStatus, string>,
+};
 
 /* ───────────────────────── Certificaciones ───────────────────────── */
 
@@ -363,7 +394,7 @@ export type Achievement = {
 
 export const ACHIEVEMENTS: Achievement[] = [
   { id: "bd", value: 25, suffix: " %", label: "Rendimiento de base de datos", caption: "Esquemas relacionales rediseñados en PostgreSQL y MySQL." },
-  { id: "forms", value: 13, label: "Formularios digitalizados", caption: "Inspecciones de inocuidad en la plataforma de trazabilidad." },
+  { id: "forms", value: 13, label: "Formularios digitalizados", caption: "Formularios de inspección en la plataforma de trazabilidad." },
   { id: "queries", value: 100, prefix: "hasta ", label: "Consultas evitadas por petición", caption: "Alertas precalculadas en segundo plano." },
   { id: "adr", value: 5, label: "ADR documentados", caption: "Flujo de ramas, Docker, CI y despliegue." },
   { id: "manual", value: 0, label: "Pasos manuales a producción", caption: "Fusionar a main publica el sitio." },
