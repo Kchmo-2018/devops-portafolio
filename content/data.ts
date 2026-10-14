@@ -169,7 +169,7 @@ export type Experience = {
   title: string;
   mode?: string;
   start: string; // "YYYY-MM" (aproximado si el CV solo da el año)
-  end: string | null; // null = actualidad
+  end: string | null; // null = sin fecha de cierre (no se muestra "actualidad")
   period: string;
   bullets: string[];
 };
@@ -181,7 +181,7 @@ export const EXPERIENCE: Experience[] = [
     title: "Desarrolladora Backend",
     start: "2025-12",
     end: null,
-    period: "Dic 2025 – actualidad",
+    period: "2025 – 2026",
     bullets: [
       "Digitalicé 13 formularios de inspección en una plataforma de trazabilidad con Python, Django REST Framework, Celery y PostgreSQL.",
       "Automaticé la gestión de incidencias: cada ítem fallido genera un ticket mediante tareas asíncronas que se ejecutan al confirmar la transacción.",
@@ -206,6 +206,67 @@ export const EXPERIENCE: Experience[] = [
       "Configuré entornos productivos desde cero con pruebas automatizadas, CI/CD, Docker y documentación técnica.",
       "Guié a compañeros en buenas prácticas de Java y resolución de incidentes, trabajando con Scrum.",
     ],
+  },
+];
+
+/* ───────────────────────── Recorrido (línea de tiempo) ───────────────────────── */
+
+export const JOURNEY_HEADER = {
+  label: "04 · Recorrido",
+  title: "Cómo llegué",
+  accent: "hasta aquí.",
+  intro:
+    "Una línea de tiempo honesta: lo que aprendí, cómo lo hice y qué decisiones tomé por el camino.",
+} as const;
+
+export type JourneyItem = {
+  id: string;
+  period: string;
+  title: string;
+  text: string;
+  tech?: string[]; // ids de SKILL_GROUPS
+};
+
+/** Orden: de lo más reciente a lo más antiguo. Sin nombres de empresas confidenciales. */
+export const JOURNEY: JourneyItem[] = [
+  {
+    id: "trabajo",
+    period: "2025 – 2026",
+    title: "Desarrolladora Backend en el sector industrial",
+    text: "Mi primer trabajo fuera de la universidad: digitalicé procesos de inspección en una plataforma de trazabilidad, con tareas asíncronas y reglas que detectan fallas recurrentes.",
+    tech: ["python", "django", "postgresql", "docker"],
+  },
+  {
+    id: "tesis",
+    period: "2025",
+    title: "Tesis de grado",
+    text: "Sistema informático para rehabilitación física con un sensor Kinect de Xbox. Captura los movimientos del paciente con precisión, los muestra en modelos 3D y los valida contra medidas establecidas por fisioterapeutas. Lo construí con PostgreSQL para los datos y MATLAB para el análisis del movimiento.",
+    tech: ["postgresql"],
+  },
+  {
+    id: "pasantias",
+    period: "Ago – Dic 2025",
+    title: "Prácticas profesionales",
+    text: "Cuatro meses para cerrar la carrera, aprendiendo cómo funciona un entorno de producción real. Trabajé con software libre y fortalecí mi lógica de programación.",
+  },
+  {
+    id: "servicio",
+    period: "Ene 2024",
+    title: "Servicio social: clases de hardware y software",
+    text: "A través de una fundación di clases de hardware y software a la comunidad, como servicio social de la universidad. Enseñar me obligó a explicar con claridad lo que ya sabía.",
+  },
+  {
+    id: "primer-trabajo",
+    period: "2022 – 2023",
+    title: "Primer trabajo: backend Java en la universidad",
+    text: "Empecé a trabajar mientras estudiaba: servicios backend con Java, bases de datos relacionales, contenedores y Linux, con pruebas automatizadas y CI/CD.",
+    tech: ["java", "postgresql", "sql", "docker", "linux"],
+  },
+  {
+    id: "universidad",
+    period: "Ene 2022 – Dic 2025",
+    title: "Ingeniería en Informática",
+    text: "Cuatro años en la URBE (Maracaibo, Venezuela), donde construí la base: programación, bases de datos, redes y desarrollo de software.",
   },
 ];
 
@@ -316,13 +377,13 @@ export const PROJECTS: Project[] = [
   {
     id: "fisioterapia",
     index: "04",
-    title: "Fisioterapia en línea con modelos 3D e IA",
+    title: "Rehabilitación física con Kinect y modelos 3D",
     kicker: "Proyecto académico · URBE",
     status: "academico",
     description:
-      "Aplicación web con modelos 3D interactivos y recomendaciones basadas en IA; backend diseñado y optimizado.",
-    features: ["Modelos 3D interactivos", "Recomendaciones con IA", "Backend optimizado"],
-    tech: ["python", "javascript", "react"],
+      "Sistema de rehabilitación física que captura los movimientos del paciente con un Kinect de Xbox y los muestra en modelos 3D, validados con medidas de fisioterapeutas. Fue mi tesis de grado.",
+    features: ["Captura de movimiento con Kinect", "Modelos 3D interactivos", "Medidas validadas por fisioterapeutas", "Análisis con MATLAB"],
+    tech: ["postgresql"],
     github: null,
   },
   {
