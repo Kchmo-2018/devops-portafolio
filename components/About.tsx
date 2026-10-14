@@ -27,8 +27,8 @@ export default function About() {
         {/* Izquierda: presentación */}
         <div className="min-w-0 lg:pt-10">
           <p className="label text-mute">{ABOUT.label}</p>
-          <h2 className="headline mt-4 text-5xl sm:text-6xl xl:text-[4rem]">
-            {ABOUT.title} <em>{ABOUT.accent}</em>
+          <h2 className="title mt-4 text-5xl sm:text-6xl xl:text-[3.75rem]">
+            {ABOUT.title} <em className="title-accent">{ABOUT.accent}</em>
           </h2>
           <p className="mt-8 max-w-[34rem] text-[19px] text-ink-2">{PROFILE.summary}</p>
 

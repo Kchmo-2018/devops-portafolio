@@ -57,8 +57,8 @@ export default function Skills() {
   return (
     <section id="skills" className="mx-auto max-w-[1320px] px-6 py-24 sm:px-12">
       <p className="label text-mute">02 · Stack</p>
-      <h2 className="headline mt-4 text-5xl sm:text-7xl lg:text-[5.5rem]">
-        La tabla periódica <em>DevOps.</em>
+      <h2 className="title mt-4 text-5xl sm:text-7xl lg:text-[5.5rem]">
+        La tabla periódica <em className="title-accent">DevOps.</em>
       </h2>
 
       <div
@@ -129,7 +129,7 @@ export default function Skills() {
           <p className="label text-mute">
             {numberOf(active.id)} · {active.family}
           </p>
-          <h3 className="headline mt-2 text-4xl">{active.name}</h3>
+          <h3 className="title mt-2 text-4xl">{active.name}</h3>
           <p className="mt-3 text-ink-2">
             <strong className="font-medium text-ink">{level?.label}.</strong> {level?.hint}
           </p>

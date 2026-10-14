@@ -7,10 +7,6 @@ import { SKILL_ICONS } from "../content/icons";
 const FOCUS =
   "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink";
 
-/* Títulos de Trabajo: sans en negrita y el acento en serif cursiva. */
-const TITLE = "font-sans font-bold leading-[0.95] tracking-[-0.045em] text-balance";
-const ACCENT = "font-serif font-normal italic tracking-[-0.02em] text-mute";
-
 const NAME_BY_ID = new Map(
   SKILL_GROUPS.flatMap((g) => g.skills).map((s) => [s.id, s.name] as const),
 );
@@ -64,8 +60,8 @@ export default function Work() {
   return (
     <section id="work" className="mx-auto max-w-[1320px] px-6 py-24 sm:px-12">
       <p className="label text-mute">{WORK.label}</p>
-      <h2 className={`${TITLE} mt-4 text-5xl sm:text-7xl lg:text-[5.5rem]`}>
-        {WORK.title} <em className={ACCENT}>{WORK.accent}</em>
+      <h2 className="title mt-4 text-5xl sm:text-7xl lg:text-[5.5rem]">
+        {WORK.title} <em className="title-accent">{WORK.accent}</em>
       </h2>
 
       <ul className={LIST}>
@@ -97,7 +93,7 @@ export default function Work() {
                         </span>
                         <span>{WORK.statuses[p.status]}</span>
                       </span>
-                      <span className={`${TITLE} block text-4xl sm:text-5xl xl:text-[3.5rem]`}>
+                      <span className="title block text-4xl sm:text-5xl xl:text-[3.5rem]">
                         {p.title}
                       </span>
                     </>
