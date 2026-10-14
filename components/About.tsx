@@ -1,4 +1,4 @@
-import { ABOUT, EDUCATION, EXPERIENCE, HERO, LANGUAGES, PROFILE } from "../content/data";
+import { ABOUT, EDUCATION, HERO, LANGUAGES, PROFILE } from "../content/data";
 import IdCard from "./IdCard";
 
 const FOCUS =
@@ -10,7 +10,6 @@ const BTN_MAIN = BTN + " border-ink bg-ink text-paper hover:bg-ink-2";
 const BTN_LINE = BTN + " border-ink/25 hover:border-ink hover:bg-soft";
 
 const education = EDUCATION[0];
-const current = EXPERIENCE.find((e) => e.end === null);
 
 function Row({ term, children }: { term: string; children: React.ReactNode }) {
   return (
@@ -68,11 +67,6 @@ export default function About() {
               <Row term="Formación">
                 {education.title} · {education.org.split(" · ")[0]}
               </Row>
-              {current && (
-                <Row term="Actual">
-                  {current.title} · {current.org}
-                </Row>
-              )}
               <Row term="Correo">
                 <a
                   href={`mailto:${PROFILE.email}`}
