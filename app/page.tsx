@@ -1,6 +1,7 @@
 import About from "../components/About";
 import Header from "../components/Header";
 import Hero from "../components/Hero";
+import Journey from "../components/Journey";
 import Skills from "../components/Skills";
 import Work from "../components/Work";
 
@@ -13,6 +14,7 @@ export default function Home() {
         <About />
         <Skills />
         <Work />
+        <Journey />
       </main>
     </>
   );
