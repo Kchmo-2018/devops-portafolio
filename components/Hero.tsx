@@ -52,22 +52,6 @@ export default function Hero() {
             </a>
           </div>
         </div>
-
-        <ul className="mt-8 flex flex-wrap gap-2.5">
-          {HERO.links.map((link) => (
-            <li key={link.label}>
-              <a
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={LINK_PILL}
-              >
-                {link.label}
-                <span aria-hidden="true">↗</span>
-              </a>
-            </li>
-          ))}
-        </ul>
       </div>
     </section>
   );
