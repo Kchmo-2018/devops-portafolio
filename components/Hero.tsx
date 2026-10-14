@@ -72,10 +72,6 @@ export default function Hero() {
           ))}
         </ul>
       </div>
-
-      <div className="relative mx-auto flex w-full max-w-[1320px] flex-wrap items-center justify-end gap-4 px-6 pb-7 sm:px-12">
-        <span className="label text-mute">{HERO.scrollHint}</span>
-      </div>
     </section>
   );
 }

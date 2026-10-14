@@ -19,7 +19,7 @@
 
 export const PROFILE = {
   name: "Kimberly Meneses",
-  firstName: "Kimberly Meneses",
+  firstName: "Kimberly",
   initials: "KM",
   role: "Backend & DevOps Engineer",
   roles: ["Backend Developer", "DevOps", "Ingeniera en Informática"],
@@ -59,7 +59,6 @@ export const HERO = {
     { label: "LinkedIn", href: PROFILE.linkedin },
     { label: "Este repositorio", href: PROFILE.repo },
   ],
-
 } as const;
 
 /* ───────────────────────── Navegación ───────────────────────── */
@@ -82,7 +81,7 @@ export type Level = "uso" | "practica" | "aprendiendo";
 
 export const LEVELS: { id: Level; label: string; hint: string }[] = [
   { id: "uso", label: "Lo uso", hint: "Lo aplico en mi trabajo o en proyectos." },
-  { id: "practica", label: "Lo practico", hint: "En practica." },
+  { id: "practica", label: "Lo practico", hint: "En práctica." },
   { id: "aprendiendo", label: "Aprendiendo", hint: "Está en mi roadmap." },
 ];
 

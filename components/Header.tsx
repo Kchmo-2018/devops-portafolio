@@ -8,7 +8,7 @@ export default function Header() {
   return (
     <header className="mx-auto flex w-full max-w-[1320px] flex-wrap items-center justify-between gap-4 px-6 pt-6 sm:px-12">
       <a href="#top" className="font-serif text-[28px] leading-none">
-        {PROFILE.firstName}
+        {PROFILE.name}
         <span className="text-mute">.</span>
       </a>
       <nav
