@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { LEVELS, PROJECTS, SKILL_GROUPS, type Level } from "../content/data";
 import { SKILL_ICONS } from "../content/icons";
+import TechChip from "./TechChip";
 
 type Filter = "todos" | Level;
 
@@ -51,14 +52,15 @@ export default function Skills() {
   const level = LEVELS.find((l) => l.id === active.level);
   const icon = SKILL_ICONS[active.id];
   const projects = PROJECTS.filter((p) => p.tech.includes(active.id));
+  const related = [...new Set(projects.flatMap((p) => p.tech))].filter((id) => id !== active.id);
   const numberOf = (id: string) =>
     String(ALL_SKILLS.findIndex((s) => s.id === id) + 1).padStart(2, "0");
 
   return (
     <section id="skills" className="mx-auto max-w-[1320px] px-6 py-24 sm:px-12">
       <p className="label text-mute">02 · Stack</p>
-      <h2 className="headline mt-4 text-5xl sm:text-7xl lg:text-[5.5rem]">
-        La tabla periódica <em>DevOps.</em>
+      <h2 className="title mt-4 text-5xl sm:text-7xl lg:text-[5.5rem]">
+        La tabla periódica <em className="title-accent">DevOps.</em>
       </h2>
 
       <div
@@ -129,8 +131,8 @@ export default function Skills() {
           <p className="label text-mute">
             {numberOf(active.id)} · {active.family}
           </p>
-          <h3 className="headline mt-2 text-4xl">{active.name}</h3>
-          <p className="mt-3 text-ink-2">
+          <h3 className="title mt-2 text-5xl">{active.name}</h3>
+          <p className="mt-3 text-mute">
             <strong className="font-medium text-ink">{level?.label}.</strong> {level?.hint}
           </p>
         </div>
@@ -148,6 +150,16 @@ export default function Skills() {
             </ul>
           ) : (
             <p className="mt-2 text-mute">Aún sin proyecto asociado en este portafolio.</p>
+          )}
+          {related.length > 0 && (
+            <>
+              <p className="label mt-5 text-mute">Se usa junto a</p>
+              <ul className="mt-2 flex flex-wrap gap-2">
+                {related.map((id) => (
+                  <TechChip key={id} id={id} />
+                ))}
+              </ul>
+            </>
           )}
         </div>
       </aside>

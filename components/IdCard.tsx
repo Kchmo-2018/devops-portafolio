@@ -65,7 +65,10 @@ function Fact({ term, children }: { term: string; children: React.ReactNode }) {
 }
 
 export default function IdCard() {
-  const [flipped, setFlipped] = useState(false);
+  /* pinned: lo fija el botón (teclado y táctil). hovered: el ratón encima (escritorio). */
+  const [pinned, setPinned] = useState(false);
+  const [hovered, setHovered] = useState(false);
+  const flipped = pinned || hovered;
   const base = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
   return (
@@ -85,7 +88,13 @@ export default function IdCard() {
           className="-mb-2 h-9 w-7 rounded-b-md border border-ink/20 bg-gradient-to-b from-[#e6e6e6] to-[#9c9c9c] shadow-sm"
         />
 
-        <div className="w-[340px] max-w-full [perspective:1400px]">
+        <div
+          className="w-[340px] max-w-full [perspective:1400px]"
+          onPointerEnter={(e) => {
+            if (e.pointerType === "mouse") setHovered(true);
+          }}
+          onPointerLeave={() => setHovered(false)}
+        >
           <div
             className={
               "grid min-h-[480px] w-full transition-transform duration-[800ms] " +
@@ -167,8 +176,8 @@ export default function IdCard() {
 
       <button
         type="button"
-        aria-pressed={flipped}
-        onClick={() => setFlipped((v) => !v)}
+        aria-pressed={pinned}
+        onClick={() => setPinned((v) => !v)}
         className={FLIP_BTN}
       >
         Girar tarjeta

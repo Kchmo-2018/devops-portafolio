@@ -1,19 +1,11 @@
 "use client";
 
 import { useRef, useState, type PointerEvent } from "react";
-import { PROJECTS, SKILL_GROUPS, WORK, type Project } from "../content/data";
-import { SKILL_ICONS } from "../content/icons";
+import { PROJECTS, WORK, type Project } from "../content/data";
+import TechChip from "./TechChip";
 
 const FOCUS =
   "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink";
-
-/* Títulos de Trabajo: sans en negrita y el acento en serif cursiva. */
-const TITLE = "font-sans font-bold leading-[0.95] tracking-[-0.045em] text-balance";
-const ACCENT = "font-serif font-normal italic tracking-[-0.02em] text-mute";
-
-const NAME_BY_ID = new Map(
-  SKILL_GROUPS.flatMap((g) => g.skills).map((s) => [s.id, s.name] as const),
-);
 
 const ITEMS = WORK.featured
   .map((id) => PROJECTS.find((p) => p.id === id))
@@ -36,9 +28,6 @@ const HEAD_OFF =
   "items-center justify-between gap-4 p-5 sm:p-6 " +
   "lg:h-full lg:flex-col lg:items-start lg:justify-between";
 
-const CHIP =
-  "inline-flex items-center gap-2 rounded-full border border-ink/10 bg-soft " +
-  "px-3.5 py-1.5 text-[13px] font-medium text-ink";
 const STEP = "rounded-lg border border-ink/20 bg-white px-3 py-2.5 text-center text-[13px] leading-tight";
 const STEP_LAST = "rounded-lg border border-ink bg-ink px-3 py-2.5 text-center text-[13px] leading-tight text-paper";
 const REPO_LINK =
@@ -64,8 +53,8 @@ export default function Work() {
   return (
     <section id="work" className="mx-auto max-w-[1320px] px-6 py-24 sm:px-12">
       <p className="label text-mute">{WORK.label}</p>
-      <h2 className={`${TITLE} mt-4 text-5xl sm:text-7xl lg:text-[5.5rem]`}>
-        {WORK.title} <em className={ACCENT}>{WORK.accent}</em>
+      <h2 className="title mt-4 text-5xl sm:text-7xl lg:text-[5.5rem]">
+        {WORK.title} <em className="title-accent">{WORK.accent}</em>
       </h2>
 
       <ul className={LIST}>
@@ -97,7 +86,7 @@ export default function Work() {
                         </span>
                         <span>{WORK.statuses[p.status]}</span>
                       </span>
-                      <span className={`${TITLE} block text-4xl sm:text-5xl xl:text-[3.5rem]`}>
+                      <span className="title block text-4xl sm:text-5xl xl:text-[3.5rem]">
                         {p.title}
                       </span>
                     </>
@@ -132,23 +121,9 @@ export default function Work() {
                     </ul>
 
                     <ul aria-label="Tecnologías" className="flex flex-wrap gap-2">
-                      {p.tech.map((id) => {
-                        const icon = SKILL_ICONS[id];
-                        return (
-                          <li key={id} className={CHIP}>
-                            {icon && (
-                              <svg
-                                viewBox="0 0 24 24"
-                                aria-hidden="true"
-                                className="size-4 shrink-0 fill-current"
-                              >
-                                <path d={icon.path} />
-                              </svg>
-                            )}
-                            {NAME_BY_ID.get(id) ?? id}
-                          </li>
-                        );
-                      })}
+                      {p.tech.map((id) => (
+                        <TechChip key={id} id={id} />
+                      ))}
                     </ul>
 
                     {p.flow && (
