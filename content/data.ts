@@ -446,21 +446,29 @@ export const CERTIFICATIONS: { title: string; issuer: string; period: string; hr
 
 /* ───────────────────────── Logros (cifras) ───────────────────────── */
 
+export const ACHIEVEMENTS_HEADER = {
+  label: "05 · Logros",
+  title: "Cifras",
+  accent: "verificables.",
+} as const;
+
 export type Achievement = {
   id: string;
+  kicker: string;
   value: number;
   prefix?: string;
   suffix?: string;
   label: string;
   caption: string;
+  featured?: boolean; // tarjeta oscura y elevada
 };
 
 export const ACHIEVEMENTS: Achievement[] = [
-  { id: "bd", value: 25, suffix: " %", label: "Rendimiento de base de datos", caption: "Esquemas relacionales rediseñados en PostgreSQL y MySQL." },
-  { id: "forms", value: 13, label: "Formularios digitalizados", caption: "Formularios de inspección en la plataforma de trazabilidad." },
-  { id: "queries", value: 100, prefix: "hasta ", label: "Consultas evitadas por petición", caption: "Alertas precalculadas en segundo plano." },
-  { id: "adr", value: 5, label: "ADR documentados", caption: "Flujo de ramas, Docker, CI y despliegue." },
-  { id: "manual", value: 0, label: "Pasos manuales a producción", caption: "Fusionar a main publica el sitio." },
+  { id: "bd", kicker: "Rendimiento", value: 25, suffix: " %", label: "Mejora en la base de datos", caption: "Esquemas relacionales rediseñados en PostgreSQL y MySQL." },
+  { id: "forms", kicker: "Digitalización", value: 13, label: "Formularios digitalizados", caption: "Formularios de inspección en la plataforma de trazabilidad." },
+  { id: "manual", kicker: "Despliegue", value: 0, label: "Pasos manuales a producción", caption: "Fusionar a main publica el sitio.", featured: true },
+  { id: "queries", kicker: "Optimización", value: 100, prefix: "hasta ", label: "Consultas evitadas por petición", caption: "Alertas precalculadas en segundo plano." },
+  { id: "adr", kicker: "Documentación", value: 5, label: "ADR documentados", caption: "Flujo de ramas, Docker, CI y despliegue." },
 ];
 
 /* ───────────────────────── Idiomas ───────────────────────── */
