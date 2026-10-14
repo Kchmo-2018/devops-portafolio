@@ -1,4 +1,4 @@
-import { HERO, PROFILE } from "../content/data";
+import { HERO } from "../content/data";
 
 const FOCUS =
   "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink";
@@ -8,11 +8,6 @@ const BTN =
   "text-[15px] transition " +
   FOCUS;
 const BTN_MAIN = "bg-ink text-paper hover:bg-ink-2";
-
-const LINK_PILL =
-  "inline-flex items-center gap-1.5 rounded-full border border-ink/25 px-4 py-2 " +
-  "text-sm transition hover:border-ink hover:bg-soft " +
-  FOCUS;
 
 const GHOST_SIZE = "text-[clamp(3.25rem,16.5vw,13.2rem)]";
 const ACCENT_SIZE = "text-[clamp(3rem,15.6vw,12.5rem)]";
