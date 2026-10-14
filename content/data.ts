@@ -227,33 +227,13 @@ export type JourneyItem = {
   tech?: string[]; // ids de SKILL_GROUPS
 };
 
-/** Orden: de lo más reciente a lo más antiguo. Sin nombres de empresas confidenciales. */
+/** Orden: de lo más antiguo a lo más reciente. Sin nombres de empresas confidenciales. */
 export const JOURNEY: JourneyItem[] = [
   {
-    id: "trabajo",
-    period: "2025 – 2026",
-    title: "Desarrolladora Backend en el sector industrial",
-    text: "Mi primer trabajo fuera de la universidad: digitalicé procesos de inspección en una plataforma de trazabilidad, con tareas asíncronas y reglas que detectan fallas recurrentes.",
-    tech: ["python", "django", "postgresql", "docker"],
-  },
-  {
-    id: "tesis",
-    period: "2025",
-    title: "Tesis de grado",
-    text: "Sistema informático para rehabilitación física con un sensor Kinect de Xbox. Captura los movimientos del paciente con precisión, los muestra en modelos 3D y los valida contra medidas establecidas por fisioterapeutas. Lo construí con PostgreSQL para los datos y MATLAB para el análisis del movimiento.",
-    tech: ["postgresql"],
-  },
-  {
-    id: "pasantias",
-    period: "Ago – Dic 2025",
-    title: "Prácticas profesionales",
-    text: "Cuatro meses para cerrar la carrera, aprendiendo cómo funciona un entorno de producción real. Trabajé con software libre y fortalecí mi lógica de programación.",
-  },
-  {
-    id: "servicio",
-    period: "Ene 2024",
-    title: "Servicio social: clases de hardware y software",
-    text: "A través de una fundación di clases de hardware y software a la comunidad, como servicio social de la universidad. Enseñar me obligó a explicar con claridad lo que ya sabía.",
+    id: "universidad",
+    period: "Ene 2022 – Dic 2025",
+    title: "Ingeniería en Informática",
+    text: "Cuatro años en la URBE (Maracaibo, Venezuela), donde construí la base: programación, bases de datos, redes y desarrollo de software.",
   },
   {
     id: "primer-trabajo",
@@ -263,10 +243,30 @@ export const JOURNEY: JourneyItem[] = [
     tech: ["java", "postgresql", "sql", "docker", "linux"],
   },
   {
-    id: "universidad",
-    period: "Ene 2022 – Dic 2025",
-    title: "Ingeniería en Informática",
-    text: "Cuatro años en la URBE (Maracaibo, Venezuela), donde construí la base: programación, bases de datos, redes y desarrollo de software.",
+    id: "servicio",
+    period: "Ene 2024",
+    title: "Servicio social: clases de hardware y software",
+    text: "A través de una fundación di clases de hardware y software a la comunidad, como servicio social de la universidad. Enseñar me obligó a explicar con claridad lo que ya sabía.",
+  },
+  {
+    id: "pasantias",
+    period: "Ago – Dic 2025",
+    title: "Prácticas profesionales",
+    text: "Cuatro meses para cerrar la carrera, aprendiendo cómo funciona un entorno de producción real. Trabajé con software libre y fortalecí mi lógica de programación.",
+  },
+  {
+    id: "tesis",
+    period: "2025",
+    title: "Tesis de grado",
+    text: "Sistema informático para rehabilitación física con un sensor Kinect de Xbox. Captura los movimientos del paciente con precisión, los muestra en modelos 3D y los valida contra medidas establecidas por fisioterapeutas. Lo construí con PostgreSQL para los datos y MATLAB para el análisis del movimiento.",
+    tech: ["postgresql"],
+  },
+  {
+    id: "trabajo",
+    period: "2025 – 2026",
+    title: "Desarrolladora Backend en el sector industrial",
+    text: "Mi primer trabajo fuera de la universidad: digitalicé procesos de inspección en una plataforma de trazabilidad, con tareas asíncronas y reglas que detectan fallas recurrentes.",
+    tech: ["python", "django", "postgresql", "docker"],
   },
 ];
 
