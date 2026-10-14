@@ -37,7 +37,7 @@ export const PROFILE = {
   quote: "Si no está automatizado ni documentado, no está terminado.",
   photo: null as string | null, // [PENDIENTE: foto]
   /** Campos de la tarjeta de identificación. */
-  card: { id: "KM-2025", dept: "Backend · DevOps", validTill: "[N] años" },
+  card: { id: "KM-2025", dept: "Backend · DevOps", experience: "2 años" },
 } as const;
 
 /* ───────────────────────── Hero ───────────────────────── */
@@ -67,7 +67,8 @@ export const ABOUT = {
   label: "01 · Sobre mí",
   title: "Construyo el camino del",
   accent: "código a producción.",
-  quoteLabel: "Lema",
+  factsTitle: "Datos rápidos",
+  quoteBy: "Mi lema",
 } as const;
 
 /* ───────────────────────── Navegación ───────────────────────── */

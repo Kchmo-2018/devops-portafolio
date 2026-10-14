@@ -51,3 +51,27 @@ body {
   background: radial-gradient(60% 50% at 70% 45%, #e1ddd4 0%, rgba(244, 242, 238, 0) 70%);
   mix-blend-mode: multiply;
 }
+
+/* Balanceo suave de la credencial colgada; se apaga con "reducir movimiento". */
+@keyframes sway {
+  0%,
+  100% {
+    transform: rotate(-1.2deg);
+  }
+  50% {
+    transform: rotate(1.2deg);
+  }
+}
+
+@utility sway {
+  transform-origin: top center;
+  animation: sway 7s ease-in-out infinite;
+
+  &:hover {
+    animation-play-state: paused;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
