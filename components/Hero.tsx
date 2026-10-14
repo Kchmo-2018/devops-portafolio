@@ -7,15 +7,14 @@ const BTN =
   "inline-flex min-h-[52px] items-center rounded-full border border-ink px-7 " +
   "text-[15px] transition " +
   FOCUS;
-const BTN_PRIMARY = "bg-ink text-paper hover:bg-ink-2";
-const BTN_GHOST = "hover:bg-soft";
+const BTN_MAIN = "bg-ink text-paper hover:bg-ink-2";
 
 const LINK_PILL =
   "inline-flex items-center gap-1.5 rounded-full border border-ink/25 px-4 py-2 " +
   "text-sm transition hover:border-ink hover:bg-soft " +
   FOCUS;
 
-const GHOST_SIZE = "text-[clamp(3.5rem,18vw,14.4rem)]";
+const GHOST_SIZE = "text-[clamp(3.25rem,16.5vw,13.2rem)]";
 const ACCENT_SIZE = "text-[clamp(3rem,15.6vw,12.5rem)]";
 
 export default function Hero() {
@@ -33,6 +32,8 @@ export default function Hero() {
           {PROFILE.remote ? " · Remoto" : ""}
         </p>
 
+        <p className="label mt-3 text-ink">{HERO.profile}</p>
+
         <h1 className="mt-5 leading-[0.86]">
           <span
             className={`ghost block font-medium uppercase tracking-[-0.04em] ${GHOST_SIZE}`}
@@ -49,10 +50,7 @@ export default function Hero() {
         <div className="mt-10 flex flex-wrap items-end justify-between gap-x-12 gap-y-8">
           <p className="max-w-[35rem] text-xl text-ink-2">{HERO.lead}</p>
           <div className="flex flex-wrap gap-3">
-            <a href={HERO.primary.href} className={`${BTN} ${BTN_PRIMARY}`}>
-              {HERO.primary.label}
-            </a>
-            <a href={HERO.secondary.href} className={`${BTN} ${BTN_GHOST}`}>
+            <a href={HERO.secondary.href} className={`${BTN} ${BTN_MAIN}`}>
               {HERO.secondary.label}
             </a>
           </div>
@@ -75,14 +73,7 @@ export default function Hero() {
         </ul>
       </div>
 
-      <div className="relative mx-auto flex w-full max-w-[1320px] flex-wrap items-center justify-between gap-4 px-6 pb-7 sm:px-12">
-        <ul className="flex flex-wrap gap-2">
-          {HERO.tags.map((tag) => (
-            <li key={tag} className="label rounded-full border border-ink/25 px-3.5 py-1.5">
-              {tag}
-            </li>
-          ))}
-        </ul>
+      <div className="relative mx-auto flex w-full max-w-[1320px] flex-wrap items-center justify-end gap-4 px-6 pb-7 sm:px-12">
         <span className="label text-mute">{HERO.scrollHint}</span>
       </div>
     </section>
