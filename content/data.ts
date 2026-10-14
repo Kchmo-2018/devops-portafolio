@@ -40,6 +40,27 @@ export const PROFILE = {
   card: { id: "KM-2025", dept: "Backend · DevOps", validTill: "[N] años" },
 } as const;
 
+/* ───────────────────────── Hero ───────────────────────── */
+
+/** Textos del hero (prototipo). `ghost` va en contorno y `accent` en cursiva serif. */
+export const HERO = {
+  status: "Disponible",
+  /** Perfil principal: Backend. DevOps es el segundo perfil, en formación. */
+  ghost: "Backend",
+  accent: "Developer.",
+  /** Línea pequeña sobre el título, con la tipografía de las etiquetas. */
+  profile: "DevOps Engineer · Desarrolladora",
+  lead: "Convierto cambios de código en despliegues confiables: ramas, CI/CD, contenedores e infraestructura, con cada decisión documentada.",
+  /** Mientras no exista la sección Contacto, el botón abre el correo. */
+  secondary: { label: "Hablemos", href: `mailto:${PROFILE.email}` },
+  /** Enlaces externos del hero (se abren en pestaña nueva). */
+  links: [
+    { label: "GitHub", href: PROFILE.github },
+    { label: "LinkedIn", href: PROFILE.linkedin },
+    { label: "Este repositorio", href: PROFILE.repo },
+  ],
+} as const;
+
 /* ───────────────────────── Navegación ───────────────────────── */
 
 export type NavItem = { id: string; label: string };
@@ -60,7 +81,7 @@ export type Level = "uso" | "practica" | "aprendiendo";
 
 export const LEVELS: { id: Level; label: string; hint: string }[] = [
   { id: "uso", label: "Lo uso", hint: "Lo aplico en mi trabajo o en proyectos." },
-  { id: "practica", label: "Lo practico", hint: "Lo estoy practicando en este portafolio." },
+  { id: "practica", label: "Lo practico", hint: "En práctica." },
   { id: "aprendiendo", label: "Aprendiendo", hint: "Está en mi roadmap." },
 ];
 
@@ -103,9 +124,9 @@ export const SKILL_GROUPS: SkillGroup[] = [
       { id: "actions", name: "GitHub Actions", symbol: "Ga", level: "uso" },
       { id: "docker", name: "Docker", symbol: "Dk", level: "uso" },
       { id: "nginx", name: "Nginx", symbol: "Nx", level: "uso" },
-      { id: "tailwind", name: "Tailwind CSS", symbol: "Tw", level: "uso" },
-      { id: "linux", name: "Linux / WSL2", symbol: "Lx", level: "practica" },
-      { id: "make", name: "Makefile", symbol: "Mk", level: "practica" },
+      { id: "tailwind", name: "Tailwind CSS", symbol: "Tw", level: "practica" },
+      { id: "linux", name: "Linux / WSL2", symbol: "Lx", level: "uso" },
+      { id: "make", name: "Makefile", symbol: "Mk", level: "uso" },
       { id: "node", name: "Node.js", symbol: "Nd", level: "practica" },
     ],
   },
