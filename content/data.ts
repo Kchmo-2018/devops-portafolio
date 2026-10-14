@@ -19,7 +19,7 @@
 
 export const PROFILE = {
   name: "Kimberly Meneses",
-  firstName: "Kimberly",
+  firstName: "Kimberly Meneses",
   initials: "KM",
   role: "Backend & DevOps Engineer",
   roles: ["Backend Developer", "DevOps", "Ingeniera en Informática"],
@@ -59,7 +59,7 @@ export const HERO = {
     { label: "LinkedIn", href: PROFILE.linkedin },
     { label: "Este repositorio", href: PROFILE.repo },
   ],
-  scrollHint: "Desliza ↓",
+
 } as const;
 
 /* ───────────────────────── Navegación ───────────────────────── */
@@ -82,7 +82,7 @@ export type Level = "uso" | "practica" | "aprendiendo";
 
 export const LEVELS: { id: Level; label: string; hint: string }[] = [
   { id: "uso", label: "Lo uso", hint: "Lo aplico en mi trabajo o en proyectos." },
-  { id: "practica", label: "Lo practico", hint: "Lo estoy practicando en este portafolio." },
+  { id: "practica", label: "Lo practico", hint: "En practica." },
   { id: "aprendiendo", label: "Aprendiendo", hint: "Está en mi roadmap." },
 ];
 
@@ -125,9 +125,9 @@ export const SKILL_GROUPS: SkillGroup[] = [
       { id: "actions", name: "GitHub Actions", symbol: "Ga", level: "uso" },
       { id: "docker", name: "Docker", symbol: "Dk", level: "uso" },
       { id: "nginx", name: "Nginx", symbol: "Nx", level: "uso" },
-      { id: "tailwind", name: "Tailwind CSS", symbol: "Tw", level: "uso" },
-      { id: "linux", name: "Linux / WSL2", symbol: "Lx", level: "practica" },
-      { id: "make", name: "Makefile", symbol: "Mk", level: "practica" },
+      { id: "tailwind", name: "Tailwind CSS", symbol: "Tw", level: "practica" },
+      { id: "linux", name: "Linux / WSL2", symbol: "Lx", level: "uso" },
+      { id: "make", name: "Makefile", symbol: "Mk", level: "uso" },
       { id: "node", name: "Node.js", symbol: "Nd", level: "practica" },
     ],
   },
