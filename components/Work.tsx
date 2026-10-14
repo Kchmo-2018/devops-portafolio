@@ -22,7 +22,7 @@ const ITEM =
 const ITEM_OPEN = "lg:flex-[4_1_0%]";
 
 const PANEL = "flex h-full flex-col overflow-hidden rounded-3xl border ";
-const PANEL_ON = "border-ink bg-ink text-paper";
+const PANEL_ON = "border-ink bg-card text-ink";
 const PANEL_OFF = "border-ink/15 bg-card text-ink transition hover:border-ink/40";
 
 const HEAD = "flex w-full text-left " + FOCUS;
@@ -32,13 +32,13 @@ const HEAD_OFF =
   "lg:h-full lg:flex-col lg:items-start lg:justify-between";
 
 const CHIP =
-  "label rounded-full border border-paper/30 px-3 py-1 text-[11px] text-paper/80";
+  "label rounded-full border border-ink/30 px-3 py-1 text-[11px] text-ink-2";
 const STEP = "rounded-lg border border-ink/20 bg-white px-3 py-2.5 text-center text-[13px] leading-tight";
 const STEP_LAST = "rounded-lg border border-ink bg-ink px-3 py-2.5 text-center text-[13px] leading-tight text-paper";
 const REPO_LINK =
-  "inline-flex min-h-11 items-center rounded-full border border-paper/30 px-5 " +
-  "text-sm transition hover:bg-paper/10 focus-visible:outline-2 " +
-  "focus-visible:outline-offset-2 focus-visible:outline-paper";
+  "inline-flex min-h-11 items-center rounded-full border border-ink/30 px-5 " +
+  "text-sm transition hover:bg-soft focus-visible:outline-2 " +
+  "focus-visible:outline-offset-2 focus-visible:outline-ink";
 
 export default function Work() {
   const [active, setActive] = useState(0);
@@ -93,12 +93,12 @@ export default function Work() {
                     id={panelId}
                     className="flex flex-1 flex-col gap-6 p-6 pt-5 sm:p-8 sm:pt-5"
                   >
-                    <p className="max-w-[34rem] text-[17px] text-paper/85">{p.description}</p>
+                    <p className="max-w-[34rem] text-[17px] text-ink-2">{p.description}</p>
 
-                    <ul className="flex flex-col gap-1.5 text-[15px] text-paper/85">
+                    <ul className="flex flex-col gap-1.5 text-[15px] text-ink-2">
                       {p.features.map((f) => (
                         <li key={f} className="flex gap-2.5">
-                          <span aria-hidden="true" className="text-paper/50">
+                          <span aria-hidden="true" className="text-mute">
                             —
                           </span>
                           {f}
@@ -115,7 +115,7 @@ export default function Work() {
                     </ul>
 
                     {p.flow && (
-                      <div className="mt-auto rounded-2xl bg-paper p-4 text-ink">
+                      <div className="mt-auto rounded-2xl border border-ink/10 bg-paper p-4 text-ink">
                         <p className="label mb-3 text-mute">{WORK.flowTitle}</p>
                         <ol className="grid grid-cols-2 gap-2 sm:grid-cols-4">
                           {p.flow.map((step, n) => (

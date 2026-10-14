@@ -25,15 +25,15 @@ const CHIP_BASE =
 const CHIP_ON = "bg-ink text-paper";
 const CHIP_OFF = "bg-transparent text-ink hover:bg-soft";
 
-/* Una casilla por nivel: negra = lo uso, blanca = lo practico, punteada = aprendiendo. */
+/* Una casilla por nivel: borde grueso = lo uso, borde suave = lo practico, punteada = aprendiendo. */
 const TILE_BASE =
   "flex aspect-[1/1.05] w-full flex-col justify-between rounded-2xl border " +
   "px-4 py-3.5 text-left transition duration-300 hover:-translate-y-1 " +
   "disabled:pointer-events-none disabled:opacity-20 " +
   FOCUS;
 const TILE_BY_LEVEL: Record<Level, string> = {
-  uso: "border-ink bg-ink text-paper",
-  practica: "border-ink bg-card text-ink",
+  uso: "border-2 border-ink bg-card text-ink",
+  practica: "border-ink/25 bg-card text-ink",
   aprendiendo: "border-dashed border-[#a9a6a0] bg-transparent text-mute",
 };
 const TILE_ACTIVE = "outline-2 outline-offset-4 outline-ink";
