@@ -248,11 +248,17 @@ export type Project = {
   /** Ids de SKILL_GROUPS. */
   tech: string[];
   github: string | null;
+  /** Título corto para la casilla cerrada del acordeón de Trabajo. */
+  short?: string;
+  /** Cuatro pasos del flujo ilustrativo (el último se resalta). */
+  flow?: [string, string, string, string];
 };
 
 export const PROJECTS: Project[] = [
   {
     id: "pipeline",
+    short: "Pipeline CI/CD",
+    flow: ["Rama", "CI", "Merge", "En vivo"],
     index: "01",
     title: "Pipeline CI/CD del portafolio",
     kicker: "Este sitio · 2026",
@@ -270,9 +276,11 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "trazabilidad",
+    short: "Plataforma de trazabilidad",
+    flow: ["Inspección", "Tarea asíncrona", "Alerta", "Ticket"],
     index: "02",
     title: "Plataforma de trazabilidad",
-    kicker: "Empresa del sector alimentario · en producción",
+    kicker: "Experiencia profesional",
     status: "produccion",
     description:
       "Nuevas funcionalidades sobre una plataforma en producción: inspecciones digitales, tickets automáticos y alertas de fallas recurrentes.",
@@ -287,6 +295,8 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "entornos",
+    short: "Entornos y migración Java",
+    flow: ["Código", "Pruebas", "Imagen Docker", "Despliegue"],
     index: "03",
     title: "Entornos productivos y migración Java",
     kicker: "URBE · 2022–2023",
@@ -327,9 +337,11 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "nube-aws",
+    short: "Despliegue en AWS",
+    flow: ["Plan", "Apply", "Contenedor", "Servicio"],
     index: "06",
     title: "Despliegue en la nube con AWS",
-    kicker: "Planeado · todavía no iniciado",
+    kicker: "Todavía no iniciado",
     status: "planeado",
     description:
       "Llevar la misma imagen del sitio a un servicio de AWS con infraestructura como código, y documentarlo con su ADR.",
@@ -338,6 +350,25 @@ export const PROJECTS: Project[] = [
     github: null,
   },
 ];
+
+/* ───────────────────────── Trabajo ───────────────────────── */
+
+export const WORK = {
+  label: "03 · Trabajo",
+  title: "Lo que",
+  accent: "construí.",
+  /** Proyectos del acordeón, en orden. */
+  featured: ["pipeline", "trazabilidad", "entornos", "nube-aws"],
+  open: "Abrir",
+  flowTitle: "Flujo",
+  repo: "Ver repositorio",
+  statuses: {
+    produccion: "En producción",
+    publico: "Público",
+    academico: "Académico",
+    planeado: "Planeado",
+  } satisfies Record<ProjectStatus, string>,
+};
 
 /* ───────────────────────── Certificaciones ───────────────────────── */
 
