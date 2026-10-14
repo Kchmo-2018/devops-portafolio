@@ -27,9 +27,6 @@ export default function Hero() {
 
       <div className="relative mx-auto flex w-full max-w-[1320px] flex-1 flex-col justify-center px-6 py-10 sm:px-12">
         <p className="label flex items-center gap-2.5 text-mute">
-          <span aria-hidden="true" className="size-2 rounded-full bg-ink" />
-          {HERO.status} · {PROFILE.location}
-          {PROFILE.remote ? " · Remoto" : ""}
         </p>
 
         <p className="label mt-3 text-ink">{HERO.profile}</p>
