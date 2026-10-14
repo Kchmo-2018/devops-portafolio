@@ -1,5 +1,6 @@
 import { ABOUT, EDUCATION, HERO, LANGUAGES, PROFILE } from "../content/data";
 import IdCard from "./IdCard";
+import TechChip from "./TechChip";
 
 const FOCUS =
   "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink";
@@ -30,7 +31,13 @@ export default function About() {
           <h2 className="title mt-4 text-5xl sm:text-6xl xl:text-[3.75rem]">
             {ABOUT.title} <em className="title-accent">{ABOUT.accent}</em>
           </h2>
-          <p className="mt-8 max-w-[34rem] text-[19px] text-ink-2">{PROFILE.summary}</p>
+          <p className="mt-8 max-w-[34rem] text-[19px] text-mute">{PROFILE.summary}</p>
+
+          <ul aria-label="Tecnologías" className="mt-6 flex max-w-[34rem] flex-wrap gap-2">
+            {ABOUT.stack.map((id) => (
+              <TechChip key={id} id={id} />
+            ))}
+          </ul>
 
           <div className="mt-9 flex flex-wrap gap-2.5">
             <a href={HERO.secondary.href} className={BTN_MAIN}>

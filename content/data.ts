@@ -69,6 +69,8 @@ export const ABOUT = {
   accent: "código a producción.",
   factsTitle: "Datos rápidos",
   quoteBy: "Mi lema",
+  /** Tecnologías destacadas bajo el resumen (ids de SKILL_GROUPS). */
+  stack: ["java", "python", "django", "postgresql", "docker", "actions"],
 } as const;
 
 /* ───────────────────────── Navegación ───────────────────────── */
