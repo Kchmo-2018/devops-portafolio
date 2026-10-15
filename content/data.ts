@@ -51,8 +51,8 @@ export const HERO = {
   /** Línea pequeña sobre el título, con la tipografía de las etiquetas. */
   profile: "DevOps Engineer · Desarrolladora",
   lead: "Convierto cambios de código en despliegues confiables: ramas, CI/CD, contenedores e infraestructura, con cada decisión documentada.",
-  /** Mientras no exista la sección Contacto, el botón abre el correo. */
-  secondary: { label: "Hablemos", href: `mailto:${PROFILE.email}` },
+  /** Lleva a la sección Contacto. */
+  secondary: { label: "Hablemos", href: "#contact" },
   /** Enlaces externos del hero (se abren en pestaña nueva). */
   links: [
     { label: "GitHub", href: PROFILE.github },
@@ -470,6 +470,28 @@ export const ACHIEVEMENTS: Achievement[] = [
   { id: "queries", kicker: "Optimización", value: 100, prefix: "hasta ", label: "Consultas evitadas por petición", caption: "Alertas precalculadas en segundo plano." },
   { id: "adr", kicker: "Documentación", value: 5, label: "ADR documentados", caption: "Flujo de ramas, Docker, CI y despliegue." },
 ];
+
+/* ───────────────────────── Contacto y pie de página ───────────────────────── */
+
+export const CONTACT = {
+  label: "06 · Contacto",
+  title: "Hablemos",
+  accent: ".",
+  lead: "Busco mi primera oportunidad en DevOps, plataforma o SRE. Si tu equipo necesita a alguien que automatiza, documenta y aprende rápido, escríbeme.",
+  nextTitle: "Próximos pasos",
+  next: [
+    "Terraform: infraestructura como código",
+    "Kubernetes: orquestar la imagen del sitio",
+    "Prometheus y Grafana: monitoreo",
+  ],
+  copy: "Copiar",
+  copied: "¡Copiado!",
+  write: "Escribir",
+} as const;
+
+export const FOOTER = {
+  text: "© 2026 · Hecho con Next.js y Tailwind CSS · Desplegado con GitHub Actions",
+} as const;
 
 /* ───────────────────────── Idiomas ───────────────────────── */
 
