@@ -473,6 +473,18 @@ export const ACHIEVEMENTS: Achievement[] = [
   { id: "adr", kicker: "Documentación", value: 5, label: "ADR documentados", caption: "Flujo de ramas, Docker, CI y despliegue." },
 ];
 
+/* ───────────────────────── Sitio (SEO y vista previa) ───────────────────────── */
+
+export const SITE = {
+  /** URL pública con la ruta base de GitHub Pages (termina en /). */
+  url: "https://kchmo-2018.github.io/devops-portafolio/",
+  locale: "es_VE",
+  title: `${PROFILE.name} — ${PROFILE.role}`,
+  description:
+    "Portafolio de Kimberly Meneses: ingeniera en informática con 2 años de experiencia en backend (Java y Python) y rumbo a DevOps: CI/CD, Docker y despliegues reproducibles.",
+  themeColor: "#f4f2ee",
+} as const;
+
 /* ───────────────────────── Contacto y pie de página ───────────────────────── */
 
 export const CONTACT = {
