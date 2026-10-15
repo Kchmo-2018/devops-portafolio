@@ -11,6 +11,9 @@ const LINKS = [
   { label: "LinkedIn", hint: "Mi perfil", href: PROFILE.linkedin },
 ];
 
+/* Los enlaces <a> a archivos de /public necesitan la ruta base de GitHub Pages. */
+const BASE = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 export default function Contact() {
   return (
     <section id="contact" className="mx-auto max-w-[1320px] px-6 py-24 sm:px-12">
@@ -33,6 +36,14 @@ export default function Contact() {
               <span className="label">{l.hint} ↗</span>
             </a>
           ))}
+          <a
+            href={`${BASE}${PROFILE.resume}`}
+            download="Kimberly-Meneses-CV.pdf"
+            className={ROW}
+          >
+            <span className="text-[17px]">Descargar CV</span>
+            <span className="label">PDF ↓</span>
+          </a>
         </div>
       </div>
     </section>
