@@ -465,7 +465,7 @@ export type Achievement = {
 
 export const ACHIEVEMENTS: Achievement[] = [
   { id: "bd", kicker: "Rendimiento", value: 25, suffix: " %", label: "Mejora en la base de datos", caption: "Esquemas relacionales rediseñados en PostgreSQL y MySQL." },
-  { id: "forms", kicker: "Digitalización", value: 13, label: "Formularios digitalizados", caption: "Formularios de inspección en la plataforma de trazabilidad." },
+  { id: "forms", kicker: "Digitalización", value: 13, label: "Procesos digitalizados", caption: "Formularios de inspección en la plataforma de trazabilidad." },
   { id: "manual", kicker: "Despliegue", value: 0, label: "Pasos manuales a producción", caption: "Fusionar a main publica el sitio.", featured: true },
   { id: "queries", kicker: "Optimización", value: 100, prefix: "hasta ", label: "Consultas evitadas por petición", caption: "Alertas precalculadas en segundo plano." },
   { id: "adr", kicker: "Documentación", value: 5, label: "ADR documentados", caption: "Flujo de ramas, Docker, CI y despliegue." },
@@ -477,13 +477,7 @@ export const CONTACT = {
   label: "06 · Contacto",
   title: "Hablemos",
   accent: ".",
-  lead: "Busco mi primera oportunidad en DevOps, plataforma o SRE. Si tu equipo necesita a alguien que automatiza, documenta y aprende rápido, escríbeme.",
-  nextTitle: "Próximos pasos",
-  next: [
-    "Terraform: infraestructura como código",
-    "Kubernetes: orquestar la imagen del sitio",
-    "Prometheus y Grafana: monitoreo",
-  ],
+  lead: "Busco aprender mas el desarrolllo backend y en DevOps. Si tu equipo necesita a alguien que automatiza, documenta y aprende rápido, escríbeme.",
   copy: "Copiar",
   copied: "¡Copiado!",
   write: "Escribir",
