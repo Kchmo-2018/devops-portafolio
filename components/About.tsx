@@ -1,14 +1,9 @@
-import { ABOUT, EDUCATION, HERO, LANGUAGES, PROFILE } from "../content/data";
+import { ABOUT, EDUCATION, LANGUAGES, PROFILE } from "../content/data";
 import IdCard from "./IdCard";
 import TechChip from "./TechChip";
 
 const FOCUS =
   "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink";
-const BTN =
-  "inline-flex min-h-[52px] items-center rounded-full border px-7 text-[15px] transition " +
-  FOCUS;
-const BTN_MAIN = BTN + " border-ink bg-ink text-paper hover:bg-ink-2";
-const BTN_LINE = BTN + " border-ink/25 hover:border-ink hover:bg-soft";
 
 const education = EDUCATION[0];
 
@@ -38,23 +33,6 @@ export default function About() {
               <TechChip key={id} id={id} />
             ))}
           </ul>
-
-          <div className="mt-9 flex flex-wrap gap-2.5">
-            <a href={HERO.secondary.href} className={BTN_MAIN}>
-              {HERO.secondary.label}
-            </a>
-            {HERO.links.slice(0, 2).map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={BTN_LINE}
-              >
-                {link.label}&nbsp;<span aria-hidden="true">↗</span>
-              </a>
-            ))}
-          </div>
         </div>
 
         {/* Centro: credencial colgada de la cinta (arranca en el borde de la sección) */}
