@@ -184,10 +184,6 @@ export default function Skills() {
         </div>
       </aside>
       </div>
-
-      <p className="mt-10 text-xs text-mute">
-        Logos de Simple Icons (CC0). Las marcas pertenecen a sus respectivos propietarios.
-      </p>
     </section>
   );
 }
