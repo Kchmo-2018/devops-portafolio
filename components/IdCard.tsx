@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { PROFILE, SKILL_GROUPS, type Level } from "../content/data";
 
 /* Nombres de las skills de una familia con un nivel dado, para el reverso. */
@@ -43,8 +43,6 @@ const FACE =
   "shadow-[0_40px_70px_-35px_rgba(13,13,13,0.45)]";
 const FACE_BACK = FACE + " [transform:rotateY(180deg)]";
 const BAND = "label flex items-center justify-between bg-ink px-6 py-4 text-paper";
-const FLIP_BTN =
-  "label min-h-11 rounded-full border border-ink px-5.5 transition hover:bg-soft " + FOCUS;
 
 function Line({ term, children }: { term: string; children: React.ReactNode }) {
   return (
@@ -69,10 +67,18 @@ export default function IdCard() {
   const [pinned, setPinned] = useState(false);
   const [hovered, setHovered] = useState(false);
   const flipped = pinned || hovered;
+  const tiltRef = useRef<HTMLDivElement>(null);
   const base = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
+  /* Inclinación 3D que sigue al ratón. Solo escribe variables CSS: no re-renderiza. */
+  const tilt = (x: number, y: number) => {
+    tiltRef.current?.style.setProperty("--ry", `${x}deg`);
+    tiltRef.current?.style.setProperty("--rx", `${y}deg`);
+  };
+  const reduceMotion = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
   return (
-    <div className="flex w-full min-w-0 flex-col items-center gap-6">
+    <div className="flex w-full min-w-0 flex-col items-center">
       {/* Cinta + clip + credencial: todo cuelga del borde superior de la sección */}
       <div className="sway flex w-full max-w-[340px] flex-col items-center">
         <div
@@ -89,12 +95,41 @@ export default function IdCard() {
         />
 
         <div
-          className="w-[340px] max-w-full [perspective:1400px]"
+          role="button"
+          tabIndex={0}
+          aria-pressed={pinned}
+          aria-label="Credencial de desarrollador. Pulsa para girarla."
+          className={"w-[340px] max-w-full cursor-pointer [perspective:1400px] " + FOCUS}
+          onClick={() => setPinned((v) => !v)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              setPinned((v) => !v);
+            }
+          }}
           onPointerEnter={(e) => {
             if (e.pointerType === "mouse") setHovered(true);
           }}
-          onPointerLeave={() => setHovered(false)}
+          onPointerMove={(e) => {
+            if (e.pointerType !== "mouse" || reduceMotion()) return;
+            const r = e.currentTarget.getBoundingClientRect();
+            const x = (e.clientX - r.left) / r.width - 0.5;
+            const y = (e.clientY - r.top) / r.height - 0.5;
+            tilt(x * 16, -y * 12);
+          }}
+          onPointerLeave={() => {
+            setHovered(false);
+            tilt(0, 0);
+          }}
         >
+          <div
+            ref={tiltRef}
+            className={
+              "transition-transform duration-200 ease-out [transform-style:preserve-3d] " +
+              "[transform:rotateX(var(--rx,0deg))_rotateY(var(--ry,0deg))_scale(var(--s,1))] " +
+              "hover:[--s:1.03] motion-reduce:transition-none"
+            }
+          >
           <div
             className={
               "grid min-h-[480px] w-full transition-transform duration-[800ms] " +
@@ -171,17 +206,9 @@ export default function IdCard() {
               </div>
             </div>
           </div>
+          </div>
         </div>
       </div>
-
-      <button
-        type="button"
-        aria-pressed={pinned}
-        onClick={() => setPinned((v) => !v)}
-        className={FLIP_BTN}
-      >
-        Girar tarjeta
-      </button>
     </div>
   );
 }
