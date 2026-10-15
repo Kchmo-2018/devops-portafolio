@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <title>Kimberly Meneses</title>
+  <rect width="32" height="32" rx="8" fill="#0d0d0d"/>
+  <clipPath id="km"><rect x="0" y="9" width="32" height="14"/></clipPath>
+  <g clip-path="url(#km)" fill="none" stroke="#f4f2ee" stroke-width="2.6" stroke-linecap="butt" stroke-linejoin="miter">
+    <path d="M7.6 8v16M14 8 8 16.2M10.6 13l3.6 11"/>
+    <path d="M17 23V9.6l3.6 8 3.6-8V23"/>
+  </g>
+  <circle cx="27.6" cy="22.2" r="1.4" fill="#6e6c66"/>
+</svg>
