@@ -98,7 +98,8 @@ export const LEVELS: { id: Level; label: string; hint: string }[] = [
 ];
 
 export type Skill = { id: string; name: string; symbol: string; level: Level };
-export type SkillGroup = { family: string; skills: Skill[] };
+/** `short` es la etiqueta corta de la casilla (si la familia es larga). */
+export type SkillGroup = { family: string; short?: string; skills: Skill[] };
 
 export const SKILL_GROUPS: SkillGroup[] = [
   {
@@ -130,6 +131,7 @@ export const SKILL_GROUPS: SkillGroup[] = [
   },
   {
     family: "DevOps y entrega",
+    short: "DevOps",
     skills: [
       { id: "git", name: "Git", symbol: "Gt", level: "uso" },
       { id: "github", name: "GitHub", symbol: "Gh", level: "uso" },

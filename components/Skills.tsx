@@ -15,7 +15,7 @@ const CHIPS: { id: Filter; label: string }[] = [
 ];
 
 const ALL_SKILLS = SKILL_GROUPS.flatMap((group) =>
-  group.skills.map((skill) => ({ ...skill, family: group.family })),
+  group.skills.map((skill) => ({ ...skill, family: group.family, tag: group.short ?? group.family })),
 );
 
 const FOCUS =
@@ -28,20 +28,24 @@ const CHIP_OFF = "bg-transparent text-ink hover:bg-soft";
 
 /* Una casilla por nivel: borde grueso = lo uso, borde suave = lo practico, punteada = aprendiendo. */
 const TILE_BASE =
-  "flex aspect-[1/1.05] w-full flex-col justify-between rounded-2xl border " +
-  "px-4 py-3.5 text-left transition duration-300 hover:-translate-y-1 " +
-  "disabled:pointer-events-none disabled:opacity-20 " +
+  "flex aspect-[1/1.05] w-full flex-col justify-between rounded-[14px] border " +
+  "px-4 py-3.5 text-left transition duration-300 hover:-translate-y-[5px] " +
+  "motion-reduce:transition-none motion-reduce:hover:translate-y-0 " +
+  "disabled:pointer-events-none disabled:opacity-[0.18] " +
   FOCUS;
 const TILE_BY_LEVEL: Record<Level, string> = {
   uso: "border-2 border-ink bg-card text-ink",
   practica: "border-ink/25 bg-card text-ink",
   aprendiendo: "border-dashed border-[#a9a6a0] bg-transparent text-mute",
 };
-const TILE_ACTIVE = "outline-2 outline-offset-4 outline-ink";
+const TILE_ACTIVE = "-translate-y-[5px] bg-soft";
+
+/* Máximo de herramientas relacionadas visibles en el panel (el resto se cuenta). */
+const MAX_RELATED = 4;
 
 const PANEL_CLASS =
-  "order-first grid gap-8 rounded-2xl border border-ink/10 bg-card p-6 " +
-  "md:order-last md:grid-cols-[auto_1fr_1fr] md:items-center md:gap-12 md:p-8";
+  "order-first grid gap-5 rounded-[14px] border border-ink/10 bg-card p-5 " +
+  "md:order-last md:grid-cols-[auto_minmax(0,1fr)_minmax(0,1.7fr)] md:items-center md:gap-9 md:px-7 md:py-5";
 
 export default function Skills() {
   const [filter, setFilter] = useState<Filter>("todos");
@@ -98,7 +102,7 @@ export default function Skills() {
                 className={`${TILE_BASE} ${TILE_BY_LEVEL[skill.level]} ${isActive ? TILE_ACTIVE : ""}`}
               >
                 <span className="label text-[11px] leading-snug opacity-80">
-                  {numberOf(skill.id)} · {skill.family}
+                  {numberOf(skill.id)} · {skill.tag}
                 </span>
                 <span>
                   <span className="block font-serif text-5xl leading-none">
@@ -113,14 +117,14 @@ export default function Skills() {
       </ul>
 
       <aside aria-live="polite" className={PANEL_CLASS}>
-        <div className="flex items-end gap-5">
-          <p className="font-serif text-8xl leading-none">{active.symbol}</p>
+        <div className="flex items-end gap-4">
+          <p className="font-serif text-6xl leading-none">{active.symbol}</p>
           {icon && (
             <svg
               viewBox="0 0 24 24"
               role="img"
               aria-label={icon.title}
-              className="size-16 shrink-0 fill-current text-ink"
+              className="size-11 shrink-0 fill-current text-ink"
             >
               <path d={icon.path} />
             </svg>
@@ -131,8 +135,8 @@ export default function Skills() {
           <p className="label text-mute">
             {numberOf(active.id)} · {active.family}
           </p>
-          <h3 className="title mt-2 text-5xl">{active.name}</h3>
-          <p className="mt-3 text-mute">
+          <h3 className="title mt-1.5 text-4xl">{active.name}</h3>
+          <p className="mt-2 text-sm text-mute">
             <strong className="font-medium text-ink">{level?.label}.</strong> {level?.hint}
           </p>
         </div>
@@ -140,7 +144,7 @@ export default function Skills() {
         <div>
           <p className="label text-mute">Dónde la uso</p>
           {projects.length > 0 ? (
-            <ul className="mt-2 flex flex-col gap-1">
+            <ul className="mt-2 flex flex-col gap-0.5 text-[15px]">
               {projects.map((project) => (
                 <li key={project.id}>
                   {project.title}
@@ -153,11 +157,14 @@ export default function Skills() {
           )}
           {related.length > 0 && (
             <>
-              <p className="label mt-5 text-mute">Se usa junto a</p>
+              <p className="label mt-4 text-mute">Se usa junto a</p>
               <ul className="mt-2 flex flex-wrap gap-2">
-                {related.map((id) => (
+                {related.slice(0, MAX_RELATED).map((id) => (
                   <TechChip key={id} id={id} />
                 ))}
+                {related.length > MAX_RELATED && (
+                  <li className="label self-center text-mute">+{related.length - MAX_RELATED}</li>
+                )}
               </ul>
             </>
           )}
