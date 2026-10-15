@@ -23,14 +23,6 @@ export default function Contact() {
           </h2>
           <p className="mt-7 max-w-[30rem] text-[19px] text-ink-2">{CONTACT.lead}</p>
 
-          <div className="mt-8 border-t border-ink/15 pt-6">
-            <p className="label mb-3 text-mute">{CONTACT.nextTitle}</p>
-            <ul className="flex flex-col gap-2 text-[15px]">
-              {CONTACT.next.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </div>
         </div>
 
         <div className="flex flex-col gap-3">
