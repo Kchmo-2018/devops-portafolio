@@ -73,16 +73,16 @@ body {
 @keyframes sway {
   0%,
   100% {
-    transform: rotate(-1.2deg);
+    transform: rotate(-2.4deg);
   }
   50% {
-    transform: rotate(1.2deg);
+    transform: rotate(2.4deg);
   }
 }
 
 @utility sway {
   transform-origin: top center;
-  animation: sway 7s ease-in-out infinite;
+  animation: sway 5.5s ease-in-out infinite;
 
   &:hover {
     animation-play-state: paused;
