@@ -35,7 +35,7 @@ export const PROFILE = {
     "Ingeniera en Informática con 2 años de experiencia construyendo APIs REST y aplicaciones web con Java (Spring Boot) y Python (Django). Hoy llevo ese oficio hacia DevOps: pipelines CI/CD, contenedores y despliegues reproducibles, con cada decisión documentada.",
   tagline: "Del código a producción, sin pasos manuales.",
   quote: "Si no está automatizado ni documentado, no está terminado.",
-  photo: "/kimberly.jpg" as string | null,
+  photo: null as string | null, // [PENDIENTE: foto]
   /** Campos de la tarjeta de identificación. */
   card: { id: "KM-2025", dept: "Backend · DevOps", experience: "2 años" },
 } as const;
@@ -50,7 +50,7 @@ export const HERO = {
   accent: "Developer.",
   /** Línea pequeña sobre el título, con la tipografía de las etiquetas. */
   profile: "DevOps Engineer · Desarrolladora",
-  lead: "Convierto cambios de código en despliegues confiables: ramas, CI/CD, contenedores e infraestructura, con cada decisión documentada.",
+  lead: "Desarrollo APIs con Java y Python, y las llevo a producción con CI/CD y contenedores. Me importa que lo que construyo sea fácil de desplegar y de mantener.",
   /** Lleva a la sección Contacto. */
   secondary: { label: "Hablemos", href: "#contact" },
   /** Enlaces externos del hero (se abren en pestaña nueva). */
