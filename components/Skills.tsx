@@ -28,8 +28,8 @@ const CHIP_OFF = "bg-transparent text-ink hover:bg-soft";
 
 /* Una casilla por nivel: borde grueso = lo uso, borde suave = lo practico, punteada = aprendiendo. */
 const TILE_BASE =
-  "flex aspect-[1/1.05] w-full flex-col justify-between rounded-[14px] border " +
-  "px-4 py-3.5 text-left transition duration-300 hover:-translate-y-[5px] " +
+  "flex h-full min-h-[128px] w-full flex-col justify-between rounded-[14px] border " +
+  "px-2.5 py-3 text-left sm:px-3 transition duration-300 hover:-translate-y-[5px] " +
   "motion-reduce:transition-none motion-reduce:hover:translate-y-0 " +
   "disabled:pointer-events-none disabled:opacity-[0.18] " +
   FOCUS;
@@ -43,9 +43,10 @@ const TILE_ACTIVE = "-translate-y-[5px] bg-soft";
 /* Máximo de herramientas relacionadas visibles en el panel (el resto se cuenta). */
 const MAX_RELATED = 4;
 
+/* Ficha lateral: en pantallas grandes queda fija a la derecha mientras se recorre la tabla. */
 const PANEL_CLASS =
-  "order-first grid gap-5 rounded-[14px] border border-ink/10 bg-card p-5 " +
-  "md:order-last md:grid-cols-[auto_minmax(0,1fr)_minmax(0,1.7fr)] md:items-center md:gap-9 md:px-7 md:py-5";
+  "order-first flex flex-col rounded-[22px] border border-ink/10 bg-card p-5 " +
+  "lg:sticky lg:top-24 lg:order-last";
 
 export default function Skills() {
   const [filter, setFilter] = useState<Filter>("todos");
@@ -85,8 +86,8 @@ export default function Skills() {
         ))}
       </div>
 
-      <div className="mt-7 flex flex-col gap-8">
-      <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7">
+      <div className="mt-7 grid gap-8 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-start">
+      <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7">
         {ALL_SKILLS.map((skill) => {
           const isMatch = filter === "todos" || skill.level === filter;
           const isActive = isMatch && skill.id === active.id;
@@ -101,14 +102,11 @@ export default function Skills() {
                 onClick={() => setActiveId(skill.id)}
                 className={`${TILE_BASE} ${TILE_BY_LEVEL[skill.level]} ${isActive ? TILE_ACTIVE : ""}`}
               >
-                <span className="label text-[11px] leading-snug opacity-80">
-                  {numberOf(skill.id)} · {skill.tag}
-                </span>
+                <span className="label text-[10px] opacity-70">{numberOf(skill.id)}</span>
                 <span>
-                  <span className="block font-serif text-5xl leading-none">
-                    {skill.symbol}
-                  </span>
-                  <span className="mt-1 block text-[15px] leading-tight">{skill.name}</span>
+                  <span className="block font-serif text-4xl leading-none">{skill.symbol}</span>
+                  <span className="mt-1 block [overflow-wrap:anywhere] text-[12px] leading-tight sm:text-[13px] lg:text-[12px] xl:text-[13px]">{skill.name}</span>
+                  <span className="label mt-1.5 block text-[8px] opacity-60">{skill.tag}</span>
                 </span>
               </button>
             </li>
@@ -117,31 +115,46 @@ export default function Skills() {
       </ul>
 
       <aside aria-live="polite" className={PANEL_CLASS}>
-        <div className="flex items-end gap-4">
-          <p className="font-serif text-6xl leading-none">{active.symbol}</p>
-          {icon && (
+        <div className="label flex items-center justify-between text-mute">
+          <span>No. {numberOf(active.id)}</span>
+          <span>{active.symbol.toUpperCase()}</span>
+        </div>
+
+        <div
+          className="mt-4 grid aspect-[2/1] place-items-center rounded-2xl sm:aspect-[5/2] lg:aspect-[4/3]"
+          style={{
+            background: icon
+              ? `radial-gradient(circle at 50% 55%, #${icon.hex}2e 0%, rgba(244,242,238,0.6) 72%)`
+              : "radial-gradient(circle at 50% 55%, #e1ddd4 0%, rgba(244,242,238,0.6) 72%)",
+          }}
+        >
+          {icon ? (
             <svg
               viewBox="0 0 24 24"
               role="img"
               aria-label={icon.title}
-              className="size-11 shrink-0 fill-current text-ink"
+              className="size-24 lg:size-28"
+              fill={`#${icon.hex}`}
             >
               <path d={icon.path} />
             </svg>
+          ) : (
+            <p aria-hidden="true" className="font-serif text-8xl leading-none text-ink">
+              {active.symbol}
+            </p>
           )}
         </div>
 
-        <div>
-          <p className="label text-mute">
-            {numberOf(active.id)} · {active.family}
-          </p>
-          <h3 className="title mt-1.5 text-4xl">{active.name}</h3>
-          <p className="mt-2 text-sm text-mute">
-            <strong className="font-medium text-ink">{level?.label}.</strong> {level?.hint}
-          </p>
-        </div>
+        <h3 className="title mt-5 text-4xl">{active.name}</h3>
+        <p className="mt-1 text-[15px] text-mute">{active.family}</p>
 
-        <div>
+        <hr className="my-4 border-ink/10" />
+
+        <p className="text-sm text-mute">
+          <strong className="font-medium text-ink">{level?.label}.</strong> {level?.hint}
+        </p>
+
+        <div className="mt-4">
           <p className="label text-mute">Dónde la uso</p>
           {projects.length > 0 ? (
             <ul className="mt-2 flex flex-col gap-0.5 text-[15px]">
@@ -153,7 +166,7 @@ export default function Skills() {
               ))}
             </ul>
           ) : (
-            <p className="mt-2 text-mute">Aún sin proyecto asociado en este portafolio.</p>
+            <p className="mt-2 text-sm text-mute">Aún sin proyecto asociado en este portafolio.</p>
           )}
           {related.length > 0 && (
             <>
