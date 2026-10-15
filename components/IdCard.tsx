@@ -151,7 +151,7 @@ export default function IdCard() {
                   <img
                     src={`${base}${PROFILE.photo}`}
                     alt={`Foto de ${PROFILE.name}`}
-                    className="h-full w-full object-cover"
+                    className="h-full w-full object-cover object-top"
                   />
                 ) : (
                   <span aria-hidden="true" className="font-serif text-6xl text-paper/70">

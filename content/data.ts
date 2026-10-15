@@ -35,7 +35,7 @@ export const PROFILE = {
     "Ingeniera en Informática con 2 años de experiencia construyendo APIs REST y aplicaciones web con Java (Spring Boot) y Python (Django). Hoy llevo ese oficio hacia DevOps: pipelines CI/CD, contenedores y despliegues reproducibles, con cada decisión documentada.",
   tagline: "Del código a producción, sin pasos manuales.",
   quote: "Si no está automatizado ni documentado, no está terminado.",
-  photo: null as string | null, // [PENDIENTE: foto]
+  photo: "/kimberly.jpg" as string | null,
   /** Campos de la tarjeta de identificación. */
   card: { id: "KM-2025", dept: "Backend · DevOps", experience: "2 años" },
 } as const;
